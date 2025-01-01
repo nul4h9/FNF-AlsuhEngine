@@ -1,0 +1,1 @@
+Put your custom difficulty image here!

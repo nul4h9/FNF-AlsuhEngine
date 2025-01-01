@@ -1,0 +1,39 @@
+{
+	"itemColor": [
+		165,
+		0,
+		77
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "tutorial",
+			"songName": "Tutorial",
+			"icon": "gf",
+			"color": [
+				165,
+				0,
+				77
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"itemFile": "week0",
+	"storyName": "Tutorial",
+	"weekName": "Tutorial",
+	"weekID": "tutorial",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

@@ -1,0 +1,18 @@
+{
+	"week_nomiss": "week4",
+	"index": -1,
+	"lua_code": "",
+	"save_tag": "week4_nomiss",
+	"desc": "Beat Week 4 on Hard with no Combo Breaks.",
+	"diff": "hard",
+	"name": "Lady Killer",
+	"color": [
+		252,
+		150,
+		215
+	],
+	"song": "",
+	"maxScore": 50,
+	"hidden": false,
+	"misses": 0
+}

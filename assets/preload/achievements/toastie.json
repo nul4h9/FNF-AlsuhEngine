@@ -1,0 +1,18 @@
+{
+	"week_nomiss": "",
+	"index": -1,
+	"lua_code": "",
+	"save_tag": "toastie",
+	"desc": "Have you tried to run the game on a toaster?",
+	"diff": "",
+	"name": "Toaster Gamer",
+	"color": [
+		255,
+		228,
+		0
+	],
+	"song": "",
+	"maxScore": 50,
+	"hidden": false,
+	"misses": -1
+}

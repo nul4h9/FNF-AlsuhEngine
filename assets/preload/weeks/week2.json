@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		34,
+		51,
+		68
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "spookeez",
+			"songName": "Spookeez",
+			"icon": "spooky",
+			"color": [
+				34,
+				51,
+				68
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "south",
+			"songName": "South",
+			"icon": "spooky",
+			"color": [
+				34,
+				51,
+				68
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "monster",
+			"songName": "Monster",
+			"icon": "monster",
+			"color": [
+				34,
+				51,
+				68
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"spooky",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "halloween",
+	"weekBefore": "week1",
+	"itemFile": "week2",
+	"storyName": "Spooky Month",
+	"weekName": "Week 2",
+	"weekID": "week2",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

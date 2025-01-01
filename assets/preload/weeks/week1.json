@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		146,
+		113,
+		253
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "bopeebo",
+			"songName": "Bopeebo",
+			"icon": "dad",
+			"color": [
+				146,
+				113,
+				253
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "fresh",
+			"songName": "Fresh",
+			"icon": "dad",
+			"color": [
+				146,
+				113,
+				253
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "dad-battle",
+			"songName": "Dad Battle",
+			"icon": "dad",
+			"color": [
+				146,
+				113,
+				253
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"itemFile": "week1",
+	"storyName": "Daddy Dearest",
+	"weekName": "Week 1",
+	"weekID": "week1",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

@@ -1,0 +1,75 @@
+{
+	"lime.executable": "haxelib run openfl",
+	"lime.targetConfigurations": [
+		{
+			"label": "Build Windows (Debug)",
+			"target": "windows",
+			"args": [
+				"-debug"
+			]
+		},
+		{
+			"label": "Build Windows (Release)",
+			"target": "windows",
+			"args": [
+				"-release"
+			]
+		},
+		{
+			"label": "Build Linux (Debug)",
+			"target": "linux",
+			"args": [
+				"-debug"
+			]
+		},
+		{
+			"label": "Build Linux (Release)",
+			"target": "linux",
+			"args": [
+				"-release"
+			]
+		},
+		{
+			"label": "Build MacOS (Debug)",
+			"target": "mac",
+			"args": [
+				"-debug"
+			]
+		},
+		{
+			"label": "Build MacOS (Release)",
+			"target": "mac",
+			"args": [
+				"-release"
+			]
+		},
+		{
+			"label": "Build HTML5 (Debug)",
+			"target": "html5",
+			"args": [
+				"-debug"
+			]
+		},
+		{
+			"label": "Build HTML5 (Release)",
+			"target": "html5",
+			"args": [
+				"-release"
+			]
+		},
+		{
+			"label": "Build Hashlink (Debug)",
+			"target": "hl",
+			"args": [
+				"-debug"
+			]
+		},
+		{
+			"label": "Build Hashlink (Release)",
+			"target": "hl",
+			"args": [
+				"-release"
+			]
+		}
+	]
+}

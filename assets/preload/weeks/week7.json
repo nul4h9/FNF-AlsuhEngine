@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		246,
+		182,
+		4
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "ugh",
+			"songName": "Ugh",
+			"icon": "tankman",
+			"color": [
+				246,
+				182,
+				4
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "guns",
+			"songName": "Guns",
+			"icon": "tankman",
+			"color": [
+				246,
+				182,
+				4
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "stress",
+			"songName": "Stress",
+			"icon": "tankman",
+			"color": [
+				246,
+				182,
+				4
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"tankman",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "tank",
+	"weekBefore": "week6",
+	"itemFile": "week7",
+	"storyName": "Tankman",
+	"weekName": "Week 7",
+	"weekID": "week7",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

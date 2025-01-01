@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		160,
+		209,
+		255
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "cocoa",
+			"songName": "Cocoa",
+			"icon": "parents",
+			"color": [
+				160,
+				209,
+				255
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "eggnog",
+			"songName": "Eggnog",
+			"icon": "parents",
+			"color": [
+				160,
+				209,
+				255
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "winter-horrorland",
+			"songName": "Winter Horrorland",
+			"icon": "monster",
+			"color": [
+				160,
+				209,
+				255
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"parents-christmas",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "christmas",
+	"weekBefore": "week4",
+	"itemFile": "week5",
+	"storyName": "Red Snow",
+	"weekName": "Week 5",
+	"weekID": "week5",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

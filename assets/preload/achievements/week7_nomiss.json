@@ -1,0 +1,18 @@
+{
+	"week_nomiss": "week7",
+	"index": -1,
+	"lua_code": "",
+	"save_tag": "week7_nomiss",
+	"desc": "Beat Week 7 on Hard with no Combo Breaks.",
+	"diff": "hard",
+	"name": "God Effing Damn It!",
+	"color": [
+		246,
+		182,
+		4
+	],
+	"song": "",
+	"maxScore": 50,
+	"hidden": false,
+	"misses": 0
+}

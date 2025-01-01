@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		255,
+		120,
+		191
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "senpai",
+			"songName": "Senpai",
+			"icon": "senpai-pixel",
+			"color": [
+				255,
+				120,
+				191
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "roses",
+			"songName": "Roses",
+			"icon": "senpai-pixel",
+			"color": [
+				255,
+				120,
+				191
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "thorns",
+			"songName": "Thorns",
+			"icon": "spirit-pixel",
+			"color": [
+				255,
+				120,
+				191
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"senpai",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "school",
+	"weekBefore": "week5",
+	"itemFile": "week6",
+	"storyName": "Hating Simulator ft. Moawling",
+	"weekName": "Week 6",
+	"weekID": "week6",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

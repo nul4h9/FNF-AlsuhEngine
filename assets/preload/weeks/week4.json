@@ -1,0 +1,63 @@
+{
+	"itemColor": [
+		252,
+		150,
+		215
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "satin-panties",
+			"songName": "Satin Panties",
+			"icon": "mom",
+			"color": [
+				252,
+				150,
+				215
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "high",
+			"songName": "High",
+			"icon": "mom",
+			"color": [
+				252,
+				150,
+				215
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "milf",
+			"songName": "M.I.L.F",
+			"icon": "mom",
+			"color": [
+				252,
+				150,
+				215
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"mom",
+		"bf",
+		"gf"
+	],
+	"weekBackground": "limo",
+	"weekBefore": "week3",
+	"itemFile": "week4",
+	"storyName": "MOMMY MUST MURDER",
+	"weekName": "Week 4",
+	"weekID": "week4",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}
