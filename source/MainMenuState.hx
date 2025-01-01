@@ -42,7 +42,7 @@ class MainMenuState extends MusicBeatState
 	var magenta:Sprite;
 	var camFollow:FlxObject;
 
-	public static var alsuhEngineVersion:String = '0.1';
+	public static var alsuhEngineVersion:String = '0.1.1';
 
 	override function create():Void
 	{

@@ -6,7 +6,6 @@ import Discord.DiscordClient;
 
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxCamera;
 import flixel.util.FlxAxes;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;

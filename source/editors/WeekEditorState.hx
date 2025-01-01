@@ -26,12 +26,10 @@ import flixel.addons.ui.FlxUI;
 import openfl.net.FileReference;
 import openfl.events.IOErrorEvent;
 import flixel.addons.ui.FlxUITabMenu;
-import flixel.animation.FlxAnimation;
 import flixel.addons.ui.FlxUICheckBox;
 import flixel.addons.ui.FlxUIInputText;
 import flixel.addons.ui.FlxUIDropDownMenu;
 import flixel.addons.ui.FlxUINumericStepper;
-import flixel.addons.ui.interfaces.IFlxUIWidget;
 import flixel.addons.transition.FlxTransitionableState;
 
 using StringTools;

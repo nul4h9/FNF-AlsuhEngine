@@ -2,10 +2,6 @@ package editors;
 
 import NoteSplash;
 
-#if DISCORD_ALLOWED
-import Discord.DiscordClient;
-#end
-
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
@@ -15,7 +11,6 @@ import flixel.util.FlxColor;
 import flixel.group.FlxGroup;
 import flixel.addons.ui.FlxInputText;
 import flixel.addons.ui.FlxUINumericStepper;
-import flixel.addons.ui.interfaces.IFlxUIWidget;
 
 using StringTools;
 

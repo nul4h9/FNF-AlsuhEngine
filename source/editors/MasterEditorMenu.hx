@@ -28,7 +28,7 @@ class MasterEditorMenu extends MusicBeatState
 		#end
 		'Dialogue Editor',
 		'Dialogue Portrait Editor',
-		'Note Splash Editor'
+		'Note Splash Debug'
 	];
 	private var directories:Array<String> = [null];
 
@@ -207,7 +207,7 @@ class MasterEditorMenu extends MusicBeatState
 
 				return LoadingState.loadAndSwitchState(new ChartingState(), true);
 			}
-			case 'Note Splash Editor': LoadingState.loadAndSwitchState(new NoteSplashDebugState());
+			case 'Note Splash Debug': LoadingState.loadAndSwitchState(new NoteSplashDebugState());
 		}
 
 		FlxG.sound.music.volume = 0;
