@@ -3824,6 +3824,25 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
+			case 'Set Property':
+			{
+				try
+				{
+					var split:Array<String> = value1.split('.');
+
+					if (split.length > 1)
+						PlayState.setVarInArray(PlayState.getPropertyLoop(split), split[split.length-1], value2);
+					else
+						PlayState.setVarInArray(instance, value1, value2);
+				}
+				catch (e:Error)
+				{
+					var len:Int = e.message.indexOf('\n') + 1;
+					if (len <= 0) len = e.message.length;
+
+					debugTrace('ERROR ("Set Property" Event) - ' + e.message.substr(0, len), false, 'error', FlxColor.RED);
+				}
+			}
 			case 'Play Sound':
 			{
 				if (flValue2 == null) flValue2 = 1;
