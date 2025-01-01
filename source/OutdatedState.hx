@@ -21,7 +21,7 @@ class OutdatedState extends MusicBeatState
 	override function create():Void
 	{
 		bg = new Sprite();
-		bg.loadGraphic(Paths.getImage('bg/menuDesat', 'shared'));
+		bg.loadGraphic(Paths.getImage('bg/menuDesat'));
 		bg.screenCenter();
 		bg.color = 0xFF222222;
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
@@ -37,7 +37,7 @@ class OutdatedState extends MusicBeatState
 			+ updateChanges
 			+ "\n\nPress ACCEPT to download a new version\nor BACK to ignore this.",
 			32);
-		warnText.setFormat(Paths.getFont('vcr.ttf'), 23, FlxColor.WHITE, CENTER);
+		warnText.setFormat(Paths.getFont('vcr.ttf'), 32, FlxColor.WHITE, CENTER);
 		warnText.borderColor = FlxColor.BLACK;
 		warnText.borderSize = 2;
 		warnText.borderStyle = FlxTextBorderStyle.OUTLINE;
