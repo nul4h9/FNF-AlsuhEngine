@@ -31,6 +31,8 @@ class EditorPlayState extends MusicBeatSubState
 	public var playbackRate:Float = 1;
 
 	var vocals:FlxSound;
+	var opponentVocals:FlxSound;
+	var hasOpponentVocals:Bool = false;
 	var inst:FlxSound;
 	
 	var notes:FlxTypedGroup<Note>;
@@ -275,7 +277,9 @@ class EditorPlayState extends MusicBeatSubState
 			var timeSub:Float = Conductor.songPosition - Conductor.offset;
 			var syncTime:Float = 20 * playbackRate;
 
-			if (Math.abs(FlxG.sound.music.time - timeSub) > syncTime || (vocals.length > 0 && Math.abs(vocals.time - timeSub) > syncTime)) {
+			if (Math.abs(FlxG.sound.music.time - timeSub) > syncTime
+				|| (vocals.length > 0 && Math.abs(vocals.time - timeSub) > syncTime)
+				|| (opponentVocals.length > 0 && Math.abs(opponentVocals.time - timeSub) > syncTime)) {
 				resyncVocals();
 			}
 		}
@@ -339,6 +343,13 @@ class EditorPlayState extends MusicBeatSubState
 		vocals.time = startPos;
 		vocals.play();
 
+		if (hasOpponentVocals)
+		{
+			opponentVocals.volume = 1;
+			opponentVocals.time = startPos;
+			opponentVocals.play();
+		}
+
 		songLength = FlxG.sound.music.length; // Song duration in a float, useful for the time left feature
 	}
 
@@ -381,16 +392,35 @@ class EditorPlayState extends MusicBeatSubState
 
 		vocals = new FlxSound();
 
-		if (songData.needsVoices && Paths.fileExists(Paths.getVoices(songData.songID, diffSuffix, true), SOUND)) {
-			vocals.loadEmbedded(Paths.getVoices(songData.songID, diffSuffix));
+		if (songData.needsVoices)
+		{
+			if (Paths.fileExists(Paths.getVoices(songData.songID, diffSuffix, 'Player', true), SOUND)) {
+				vocals.loadEmbedded(Paths.getVoices(songData.songID, diffSuffix, 'Player'));
+			}
+			else vocals.loadEmbedded(Paths.getVoices(songData.songID, diffSuffix));
 		}
 
 		#if FLX_PITCH
 		vocals.pitch = playbackRate;
 		#end
 
-		FlxG.sound.music.volume = 0;
 		FlxG.sound.list.add(vocals);
+
+		opponentVocals = new FlxSound();
+
+		if (songData.needsVoices && Paths.fileExists(Paths.getVoices(songData.songID, diffSuffix, 'Opponent', true), SOUND))
+		{
+			opponentVocals.loadEmbedded(Paths.getVoices(songData.songID, diffSuffix, 'Opponent'));
+			hasOpponentVocals = true;
+		}
+
+		if (hasOpponentVocals)
+		{
+			#if FLX_PITCH opponentVocals.pitch = playbackRate; #end
+			FlxG.sound.list.add(opponentVocals);
+		}
+
+		FlxG.sound.music.volume = 0;
 
 		unspawnNotes = ChartParser.parseSongChart(songData, playbackRate);
 		if (unspawnNotes.length > 0) unspawnNotes.sort(PlayState.sortByTime);
@@ -454,6 +484,12 @@ class EditorPlayState extends MusicBeatSubState
 	{
 		vocals.pause();
 		vocals.destroy();
+
+		if (hasOpponentVocals)
+		{
+			opponentVocals.pause();
+			opponentVocals.destroy();
+		}
 
 		if (finishTimer != null)
 		{
@@ -744,7 +780,11 @@ class EditorPlayState extends MusicBeatSubState
 
 	function opponentNoteHit(note:Note):Void
 	{
-		if (PlayState.SONG.needsVoices) vocals.volume = 1;
+		if (hasOpponentVocals) {
+			opponentVocals.volume = 1;
+		}
+		else vocals.volume = 1;
+
 		var strum:StrumNote = opponentStrums.members[note.noteData];
 
 		if (strum != null)
@@ -869,6 +909,17 @@ class EditorPlayState extends MusicBeatSubState
 		}
 
 		vocals.play();
+
+		if (hasOpponentVocals)
+		{
+			if (Conductor.songPosition <= opponentVocals.length)
+			{
+				opponentVocals.time = Conductor.songPosition;
+				#if FLX_PITCH opponentVocals.pitch = playbackRate; #end
+			}
+
+			opponentVocals.play();
+		}
 	}
 
 	function RecalculateRating(badHit:Bool = false):Void

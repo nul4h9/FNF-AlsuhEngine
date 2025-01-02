@@ -339,32 +339,32 @@ class Paths
 		return returnSound('music', key, library, getFileLocation, ignoreMods);
 	}
 
-	public static function getVoices(song:String, ?suffix:String = null, ?getFileLocation:Null<Bool> = false, ?ignoreMods:Null<Bool> = false):FlxSoundAsset
+	public static function getVoices(song:String, ?difficulty:String = null, ?postfix:String = null, ?getFileLocation:Null<Bool> = false, ?ignoreMods:Null<Bool> = false):FlxSoundAsset
 	{
 		var songPath:String = formatToSongPath(song);
+		var postfixStuff:String = '';
 
-		if (suffix != null && suffix.length > 0)
+		if (postfix != null && postfix.length > 0)
+			postfixStuff = '-' + postfix;
+
+		if (difficulty != null && difficulty.length > 0)
 		{
-			if (fileExists(songPath + suffix + '/Voices.$SOUND_EXT', SOUND, 'songs', ignoreMods))
-			{
-				var sound:FlxSoundAsset = returnSound(songPath + suffix, 'Voices', 'songs', getFileLocation, ignoreMods);
-				return sound;
+			if (fileExists(songPath + difficulty + '/Voices$postfixStuff.$SOUND_EXT', SOUND, 'songs', ignoreMods)) {
+				return returnSound(songPath + difficulty, 'Voices$postfixStuff', 'songs', getFileLocation, ignoreMods);
 			}
 		}
 
-		return returnSound(songPath, 'Voices', 'songs', getFileLocation, ignoreMods);
+		return returnSound(songPath, 'Voices$postfixStuff', 'songs', getFileLocation, ignoreMods);
 	}
 
-	public static function getInst(song:String, ?suffix:String = null, ?getFileLocation:Null<Bool> = false, ?ignoreMods:Null<Bool> = false):FlxSoundAsset
+	public static function getInst(song:String, ?difficulty:String = null, ?getFileLocation:Null<Bool> = false, ?ignoreMods:Null<Bool> = false):FlxSoundAsset
 	{
 		var songPath:String = formatToSongPath(song);
 
-		if (suffix != null && suffix.length > 0)
+		if (difficulty != null && difficulty.length > 0)
 		{
-			if (fileExists(songPath + suffix + '/Inst.$SOUND_EXT', SOUND, 'songs', ignoreMods))
-			{
-				var sound:FlxSoundAsset = returnSound(songPath + suffix, 'Inst', 'songs', getFileLocation, ignoreMods);
-				return sound;
+			if (fileExists(songPath + difficulty + '/Inst.$SOUND_EXT', SOUND, 'songs', ignoreMods)) {
+				return returnSound(songPath + difficulty, 'Inst', 'songs', getFileLocation, ignoreMods);
 			}
 		}
 
