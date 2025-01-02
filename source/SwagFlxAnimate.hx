@@ -1,6 +1,5 @@
 package;
 
-#if FLXANIMATE_ALLOWED
 import haxe.Json;
 
 import flixel.util.FlxDestroyUtil;
@@ -115,4 +114,3 @@ class SwagFlxAnimate extends OriginalFlxAnimate
 		anim.play();
 	}
 }
-#end

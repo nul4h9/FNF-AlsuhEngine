@@ -912,9 +912,11 @@ class CharacterEditorState extends MusicBeatState
 
 			character.isAnimateAtlas = true;
 		}
-		else if (Paths.fileExists('images/' + character.imageFile + '.txt', TEXT)) character.frames = Paths.getPackerAtlas(character.imageFile);
-		else if (Paths.fileExists('images/' + character.imageFile + '.json', TEXT)) character.frames = Paths.getAsepriteAtlas(character.imageFile);
-		else character.frames = Paths.getSparrowAtlas(character.imageFile);
+		else
+		{
+			var split:Array<String> = [for (i in character.imageFile.trim().split(',')) i.trim()];
+			character.frames = Paths.getMultiAtlas(split);
+		}
 
 		for (anim in anims)
 		{

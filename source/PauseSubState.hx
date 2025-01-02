@@ -131,6 +131,7 @@ class PauseSubState extends MusicBeatSubState
 		practiceText.setFormat(Paths.getFont('vcr.ttf'), 32);
 		practiceText.x = FlxG.width - (practiceText.width + 20);
 		practiceText.updateHitbox();
+		practiceText.visible = false;
 		add(practiceText);
 
 		levelInfo.alpha = 0;
@@ -145,6 +146,7 @@ class PauseSubState extends MusicBeatSubState
 
 		if (PlayState.instance.practiceMode)
 		{
+			practiceText.visible = true;
 			practiceText.alpha = 0;
 			practiceText.y -= 5;
 

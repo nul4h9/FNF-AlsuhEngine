@@ -1348,7 +1348,7 @@ class PlayState extends MusicBeatState
 	function set_cpuControlled(value:Bool):Bool
 	{
 		cpuControlled = value;
-		botplayTxt.visible = cpuControlled && !addScoreOnPractice;
+		if (botplayTxt != null) botplayTxt.visible = cpuControlled && !addScoreOnPractice;
 		return value;
 	}
 
@@ -5453,7 +5453,7 @@ class PlayState extends MusicBeatState
 	}
 	#end
 
-	public function callOnScripts(funcToCall:String, args:Array<Dynamic> = null, ignoreStops:Bool = false, exclusions:Array<String> = null, excludeValues:Array<Dynamic> = null):Dynamic
+	public function callOnScripts(funcToCall:String, ?args:Array<Dynamic>, ignoreStops:Bool = false, ?exclusions:Array<String>, ?excludeValues:Array<Dynamic>):Dynamic
 	{
 		if (args == null) args = new Array();
 		if (exclusions == null) exclusions = new Array();
@@ -5465,7 +5465,7 @@ class PlayState extends MusicBeatState
 		return result;
 	}
 
-	public function callOnLuas(funcToCall:String, args:Array<Dynamic> = null, ignoreStops:Bool = false, exclusions:Array<String> = null, excludeValues:Array<Dynamic> = null):Dynamic
+	public function callOnLuas(funcToCall:String, ?args:Array<Dynamic>, ignoreStops:Bool = false, ?exclusions:Array<String>, ?excludeValues:Array<Dynamic>):Dynamic
 	{
 		var returnVal:Dynamic = Function_Continue;
 
@@ -5509,7 +5509,7 @@ class PlayState extends MusicBeatState
 		return returnVal;
 	}
 	
-	public function callOnHScript(funcToCall:String, args:Array<Dynamic> = null, ?ignoreStops:Bool = false, ?exclusions:Array<String> = null, excludeValues:Array<Dynamic> = null):Dynamic
+	public function callOnHScript(funcToCall:String, args:Array<Dynamic> = null, ignoreStops:Bool = false, ?exclusions:Array<String>, ?excludeValues:Array<Dynamic>):Dynamic
 	{
 		var returnVal:Dynamic = Function_Continue;
 
@@ -5520,10 +5520,7 @@ class PlayState extends MusicBeatState
 		excludeValues.push(Function_Continue);
 
 		var len:Int = hscriptArray.length;
-
-		if (len < 1) {
-			return returnVal;
-		}
+		if (len < 1) return returnVal;
 
 		for (i in 0...len)
 		{
@@ -5532,8 +5529,6 @@ class PlayState extends MusicBeatState
 			if (script == null || !script.active || !script.variables.exists(funcToCall) || exclusions.contains(script.origin)) {
 				continue;
 			}
-
-			var myValue:Dynamic = null;
 
 			try
 			{
@@ -5554,7 +5549,7 @@ class PlayState extends MusicBeatState
 		return returnVal;
 	}
 
-	public function setOnScripts(variable:String, arg:Dynamic, exclusions:Array<String> = null):Void
+	public function setOnScripts(variable:String, arg:Dynamic, ?exclusions:Array<String>):Void
 	{
 		if (exclusions == null) exclusions = new Array();
 
@@ -5562,7 +5557,7 @@ class PlayState extends MusicBeatState
 		setOnHScript(variable, arg, exclusions);
 	}
 
-	public function setOnLuas(variable:String, arg:Dynamic, exclusions:Array<String> = null):Void
+	public function setOnLuas(variable:String, arg:Dynamic, ?exclusions:Array<String>):Void
 	{
 		#if LUA_ALLOWED
 		if (exclusions == null) exclusions = new Array();
@@ -5575,7 +5570,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function setOnHScript(variable:String, arg:Dynamic, exclusions:Array<String> = null):Void
+	public function setOnHScript(variable:String, arg:Dynamic, ?exclusions:Array<String>):Void
 	{
 		#if HSCRIPT_ALLOWED
 		if (exclusions == null) exclusions = new Array();

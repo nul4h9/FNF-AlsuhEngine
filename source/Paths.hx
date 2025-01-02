@@ -460,6 +460,27 @@ class Paths
 		return getFile('fonts/$key', FONT, library, ignoreMods);
 	}
 
+	public static function getMultiAtlas(keys:Array<String>, ?library:Null<String> = null, ?allowGPU:Null<Bool> = true, ?ignoreMods:Null<Bool> = false):FlxAtlasFrames
+	{
+		var parentFrames:FlxAtlasFrames = Paths.getAtlas(keys[0].trim(), library, allowGPU, ignoreMods);
+
+		if (keys.length > 1)
+		{
+			var original:FlxAtlasFrames = parentFrames;
+
+			parentFrames = new FlxAtlasFrames(parentFrames.parent);
+			parentFrames.addAtlas(original, true);
+
+			for (i in 1...keys.length)
+			{
+				var extraFrames:FlxAtlasFrames = Paths.getAtlas(keys[i].trim(), library, allowGPU, ignoreMods);
+				if (extraFrames != null) parentFrames.addAtlas(extraFrames, true);
+			}
+		}
+
+		return parentFrames;
+	}
+
 	public static function getSparrowAtlas(key:String, ?library:Null<String> = null, ?allowGPU:Null<Bool> = true, ?ignoreMods:Null<Bool> = false):FlxAtlasFrames
 	{
 		var imagePath:String = getImage(key, library, false, true, ignoreMods);
@@ -520,7 +541,6 @@ class Paths
 		return null;
 	}
 
-	#if FLXANIMATE_ALLOWED
 	public static function loadAnimateAtlas(spr:FlxAnimate, folderOrImg:Dynamic, spriteJson:Dynamic = null, animationJson:Dynamic = null, ?library:Null<String> = null, ?allowGPU:Null<Bool> = true, ?ignoreMods:Null<Bool> = false):Void
 	{
 		var changedAnimJson:Bool = false;
@@ -584,7 +604,18 @@ class Paths
 
 		spr.loadAtlasEx(folderOrImg, spriteJson, animationJson);
 	}
-	#end
+
+	public static function getAtlas(key:String, ?library:Null<String> = null, ?allowGPU:Null<Bool> = true, ?ignoreMods:Null<Bool> = false):FlxAtlasFrames
+	{
+		if (Paths.fileExists('images/' + key + '.txt', TEXT, library, ignoreMods)) { // packer
+			return Paths.getPackerAtlas(key, library, allowGPU, ignoreMods);
+		}
+		else if (Paths.fileExists('images/' + key + '.json', TEXT, library, ignoreMods)) { // aseprite
+			return Paths.getAsepriteAtlas(key, library, allowGPU, ignoreMods);
+		}
+
+		return Paths.getSparrowAtlas(key, library, allowGPU, ignoreMods); // sparrow
+	}
 
 	public static function returnSound(path:String, key:String, ?library:Null<String> = null, ?getFileLocation:Null<Bool> = false, ?ignoreMods:Null<Bool> = false):FlxSoundAsset
 	{

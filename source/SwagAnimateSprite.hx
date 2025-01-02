@@ -1,6 +1,5 @@
 package;
 
-#if FLXANIMATE_ALLOWED
 import SwagFlxAnimate as FlxAnimate;
 
 class SwagAnimateSprite extends FlxAnimate
@@ -35,4 +34,3 @@ class SwagAnimateSprite extends FlxAnimate
 		super.destroy();
 	}
 }
-#end

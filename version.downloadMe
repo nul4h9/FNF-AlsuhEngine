@@ -1,3 +1,6 @@
-0.1.2;
-- Fixed Mods Menu
-- Fixed events "Set Property" and "Call Method"
+0.1.2h;
+- Fixed rescoring data on Freeplay after reseting score
+- Fixed soundable preferences
+- Fixed practice mode text on Pause Menu
+- FlxAnimate has become mandatory
+- Characters can now load multiple sprite sheets

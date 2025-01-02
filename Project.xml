@@ -25,7 +25,6 @@
 	<define name="CRASH_HANDLER" if="desktop release" />
 
 	<define name="ACHIEVEMENTS_ALLOWED" />
-	<define name="FLXANIMATE_ALLOWED" />
 	<define name="DISCORD_ALLOWED" if="desktop cpp" />
 	<define name="RUNTIME_SHADERS_ALLOWED" unless="flash || nme"/>
 	<define name="VIDEOS_ALLOWED" if="windows cpp || linux cpp || html5 || android cpp" unless="32bits"/>
@@ -125,8 +124,8 @@
 	<haxelib name="flixel" version="5.5.0"/>
 	<haxelib name="flixel-ui" version="2.6.0"/>
 	<haxelib name="flixel-addons" version="3.2.1"/>
+	<haxelib name="flxanimate" />
 
-	<haxelib name="flxanimate" if="FLXANIMATE_ALLOWED"/>
 	<haxelib name="hxdiscord_rpc" version="1.1.1" if="DISCORD_ALLOWED"/>
 	<haxelib name="hxCodec" version="3.0.2" if="VIDEOS_ALLOWED" unless="html5"/>
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>

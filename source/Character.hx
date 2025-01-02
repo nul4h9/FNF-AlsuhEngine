@@ -2,9 +2,7 @@ package;
 
 import haxe.Json;
 
-#if FLXANIMATE_ALLOWED
 import SwagFlxAnimate as FlxAnimate;
-#end
 
 import flixel.FlxG;
 import openfl.errors.Error;
@@ -131,33 +129,17 @@ class Character extends Sprite
 	{
 		isAnimateAtlas = false;
 
-		#if FLXANIMATE_ALLOWED
 		var animToFind:String = 'images/' + json.image + '/Animation.json';
 		if (Paths.fileExists(animToFind, TEXT)) isAnimateAtlas = true;
-		#end
 
 		scale.set(1, 1);
 		updateHitbox();
 
 		if (!isAnimateAtlas)
 		{
-			var spriteType:String = 'sparrow';
-
-			if (Paths.fileExists('images/' + json.image + '.txt', TEXT)) {
-				spriteType = 'packer';
-			}
-			else if (Paths.fileExists('images/' + json.image + '.json', TEXT)) {
-				spriteType = 'aseprite';
-			}
-	
-			switch (spriteType)
-			{
-				case 'packer': frames = Paths.getPackerAtlas(json.image);
-				case 'aseprite': frames = Paths.getAsepriteAtlas(json.image);
-				default: frames = Paths.getSparrowAtlas(json.image);
-			}
+			var split:Array<String> = [for (i in json.image.trim().split(',')) i.trim()];
+			frames = Paths.getMultiAtlas(split);
 		}
-		#if FLXANIMATE_ALLOWED
 		else
 		{
 			atlas = new FlxAnimate();
@@ -170,7 +152,6 @@ class Character extends Sprite
 				Debug.logWarn('Could not load atlas ${json.image}:' + e.toString());
 			}
 		}
-		#end
 
 		imageFile = json.image;
 		jsonScale = json.scale;
@@ -233,7 +214,6 @@ class Character extends Sprite
 					else
 						animation.addByPrefix(animAnim, animName, animFps, animLoop);
 				}
-				#if FLXANIMATE_ALLOWED
 				else
 				{
 					if (animIndices != null && animIndices.length > 0)
@@ -241,7 +221,6 @@ class Character extends Sprite
 					else
 						atlas.anim.addBySymbol(animAnim, animName, animFps, animLoop);
 				}
-				#end
 
 				if (anim.offsets != null && anim.offsets.length > 1) {
 					addOffset(anim.anim, anim.offsets[0], anim.offsets[1]);
@@ -250,9 +229,7 @@ class Character extends Sprite
 			}
 		}
 
-		#if FLXANIMATE_ALLOWED
 		if (isAnimateAtlas) copyAtlasValues();
-		#end
 	}
 
 	override function update(elapsed:Float):Void
@@ -488,8 +465,6 @@ class Character extends Sprite
 	}
 
 	public var isAnimateAtlas:Bool = false;
-
-	#if FLXANIMATE_ALLOWED
 	public var atlas:FlxAnimate;
 
 	public override function draw():Void
@@ -550,5 +525,4 @@ class Character extends Sprite
 			atlas = FlxDestroyUtil.destroy(atlas);
 		}
 	}
-	#end
 }
