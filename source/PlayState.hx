@@ -3828,12 +3828,18 @@ class PlayState extends MusicBeatState
 			{
 				try
 				{
+					var trueValue:Dynamic = value2.trim();
+
+					if (trueValue == 'true' || trueValue == 'false') trueValue = trueValue == 'true';
+					else if (flValue2 != null) trueValue = flValue2;
+					else trueValue = value2;
+
 					var split:Array<String> = value1.split('.');
 
 					if (split.length > 1)
-						PlayState.setVarInArray(PlayState.getPropertyLoop(split), split[split.length-1], value2);
+						PlayState.setVarInArray(PlayState.getPropertyLoop(split), split[split.length - 1], trueValue);
 					else
-						PlayState.setVarInArray(instance, value1, value2);
+						PlayState.setVarInArray(instance, value1, trueValue);
 				}
 				catch (e:Error)
 				{
@@ -3841,6 +3847,17 @@ class PlayState extends MusicBeatState
 					if (len <= 0) len = e.message.length;
 
 					debugTrace('ERROR ("Set Property" Event) - ' + e.message.substr(0, len), false, 'error', FlxColor.RED);
+				}
+			}
+			case 'Call Method':
+			{
+				try
+				{
+					var arguments:Array<String> = [for (i in value2.trim().split(',')) i.trim()];
+					callMethodFromObject(instance, value1, arguments);
+				}
+				catch (e:Error) {
+					debugTrace('ERROR ("Call Method" Event) - ' + e.message.substr(0, e.message.indexOf('\n')), false, 'error', FlxColor.RED);
 				}
 			}
 			case 'Play Sound':
@@ -4041,31 +4058,6 @@ class PlayState extends MusicBeatState
 						inCutscene = true;
 	
 						FlxG.sound.play(Paths.getSound('Lights_Shut_off'), 1, false, null, true, function():Void endSong()) #if FLX_PITCH .pitch = playbackRate #end;
-					}
-				}
-				case 'earworm':
-				{
-					finishCallback = function():Void
-					{
-						cameraMovement('dad');
-
-						FlxG.sound.play(Paths.getSound('rewind'));
-
-						camHUD.visible = false;
-
-						defaultCamZoom = 1;
-						dad.alpha = FlxMath.EPSILON;
-	
-						var cg:Sprite = new Sprite(dadGroup.x, dadGroup.y);
-						cg.frames = Paths.getSparrowAtlas('characters/cassettegirl-chill');
-						cg.animation.addByPrefix('idle', 'cassettegirl-chill', 22, false);
-	
-						cg.animation.finishCallback = function(anim:String):Void {
-							endSong();
-						}
-	
-						cg.playAnim('idle', true);
-						add(cg);
 					}
 				}
 			}
@@ -4373,7 +4365,7 @@ class PlayState extends MusicBeatState
 
 					daNote.ratingMod = daRating.ratingMod;
 
-					if (!daRating.healthDisabled) {
+					if (!daRating.healthDisabled && daNote.healthDisabled) {
 						health += daRating.health * healthGain;
 					}
 
