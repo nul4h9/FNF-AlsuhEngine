@@ -126,12 +126,11 @@ class PauseSubState extends MusicBeatSubState
 		chartingText.alpha = 0;
 		add(chartingText);
 
-		practiceText = new FlxText(20, 15 + (96 + (PlayState.chartingMode ? 32 : 0)), 0, 'PRACTICE MODE', 32);
+		practiceText = new FlxText(20, 20 + (96 + (PlayState.chartingMode ? 32 : 0)), 0, 'PRACTICE MODE', 32);
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.getFont('vcr.ttf'), 32);
 		practiceText.x = FlxG.width - (practiceText.width + 20);
 		practiceText.updateHitbox();
-		practiceText.alpha = 0;
 		add(practiceText);
 
 		levelInfo.alpha = 0;
@@ -146,11 +145,10 @@ class PauseSubState extends MusicBeatSubState
 
 		if (PlayState.instance.practiceMode)
 		{
-			if (PlayState.chartingMode) {
-				FlxTween.tween(practiceText, {alpha: 1, y: practiceText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 1.1});
-			}
-			else
-				FlxTween.tween(practiceText, {alpha: 1, y: practiceText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.9});
+			practiceText.alpha = 0;
+			practiceText.y -= 5;
+
+			FlxTween.tween(practiceText, {alpha: 1, y: practiceText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: (PlayState.chartingMode ? 1.1 : 0.9)});
 		}
 
 		if (PlayState.chartingMode) {
