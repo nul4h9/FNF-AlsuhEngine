@@ -592,13 +592,13 @@ class Paths
 			if (!changedImage)
 			{
 				changedImage = true;
-				folderOrImg = getImage(originalPath);
+				folderOrImg = getImage(originalPath, library, allowGPU, ignoreMods);
 			}
 
 			if (!changedAnimJson)
 			{
 				changedAnimJson = true;
-				animationJson = getTextFromFile('images/$originalPath/Animation.json');
+				animationJson = getTextFromFile('images/$originalPath/Animation.json', library, ignoreMods);
 			}
 		}
 
