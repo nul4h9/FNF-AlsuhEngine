@@ -1,0 +1,12 @@
+{
+	"confirm_anim": "M Nene Idle",
+	"antialiasing": true,
+	"idle_anim": "M Nene Idle",
+	"position": [
+		-30,
+		-10
+	],
+	"scale": 1,
+	"image": "Menu_Nene",
+	"flipX": false
+}

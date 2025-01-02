@@ -65,6 +65,20 @@
 			"dir": null,
 			"ref": "bb46d45d567c7b7d1c80eed6eed43cc02e2d37cb",
 			"url": "https://github.com/CodenameCrew/hscript-improved"
+		},
+		{
+			"name": "funkin.vis",
+			"type": "git",
+			"dir": null,
+			"ref": "22b1ce089dd924f15cdc4632397ef3504d464e90",
+			"url": "https://github.com/FunkinCrew/funkVis"
+		},
+		{
+			"name": "grig.audio",
+			"type": "git",
+			"dir": null,
+			"ref": "cbf91e2180fd2e374924fe74844086aab7891666",
+			"url": "https://gitlab.com/haxe-grig/grig.audio.git"
 		}
 	]
 }

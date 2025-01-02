@@ -1,0 +1,9 @@
+{
+	"confirm_anim": "M pico FUCKYOU",
+	"antialiasing": true,
+	"idle_anim": "M Pico Idle",
+	"position": [20, 0],
+	"scale": 1,
+	"image": "Menu_Pico_Player",
+	"flipX": false
+}
