@@ -175,7 +175,7 @@ class PreferencesSubState extends MusicBeatSubState
 		option.maxValue = 1;
 		option.changeValue = 0.1;
 		option.decimals = 1;
-		option.disableChangeOnReset = true;
+		//option.disableChangeOnReset = true;
 		option.onChange = function():Void {
 			FlxG.sound.play(Paths.getSound('hitsound'), ClientPrefs.hitsoundVolume);
 		}
@@ -372,7 +372,7 @@ class PreferencesSubState extends MusicBeatSubState
 			'pauseMusic',
 			'string',
 			['None', 'Breakfast', 'Tea Time']);
-		option.disableChangeOnReset = true;
+		//option.disableChangeOnReset = true;
 		addOption(option);
 
 		option.onChange = function():Void
@@ -751,9 +751,8 @@ class PreferencesSubState extends MusicBeatSubState
 							updateTextFrom(curOption);
 						}
 
-						if (!curOption.disableChangeOnReset) {
+						//if (!curOption.disableChangeOnReset)
 							curOption.change();
-						}
 	
 						FlxG.sound.play(Paths.getSound('cancelMenu'));
 						reloadCheckboxes();

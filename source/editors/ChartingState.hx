@@ -49,16 +49,6 @@ using StringTools;
 
 class ChartingState extends MusicBeatState
 {
-	public static var noteTypeList:Array<String> =
-	[
-		'',
-		'Alt Animation',
-		'Hey!',
-		'Hurt Note',
-		'GF Sing',
-		'No Animation'
-	];
-
 	var ignoreWarnings:Bool = false;
 	var curNoteTypes:Array<String> = [];
 
@@ -87,7 +77,7 @@ class ChartingState extends MusicBeatState
 		['Set Camera Speed', "Value 1: New camera speed\n(Default: Stage Camera Speed)"],
 		['Move Camera', "Value 1: Target (Dad, GF, BF)\n\nIf empty, camera moves to\ncharacter by current section."],
 		['Camera Flash', "Value 1: Arguments - Camera, Duration\nExample: \"game, 1\"\n\nValue 2: Color"],
-		['Camera Fade', "Value 1: Arguments - Camera, Duration, Fade in (boolean value)\nExample: \"game, 1, true\"\n\nValue 2: Color"]
+		['Camera Fade', "Value 1: Arguments - Camera, Duration, Fade in (bool-\nean value)\nExample: \"game, 1, true\"\n\nValue 2: Color"]
 	];
 
 	private var blockPressWhileTypingOn:Array<FlxUIInputText> = [];
@@ -1077,9 +1067,9 @@ class ChartingState extends MusicBeatState
 
 		var key:Int = 0;
 
-		while (key < noteTypeList.length)
+		while (key < Note.defaultNoteTypes.length)
 		{
-			curNoteTypes.push(noteTypeList[key]);
+			curNoteTypes.push(Note.defaultNoteTypes[key]);
 			key++;
 		}
 

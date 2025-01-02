@@ -159,12 +159,12 @@ class PlayState extends MusicBeatState
 	public var noteKillOffset:Float = 350;
 
 	// gameplay settings
-	public var addScoreOnPractice:Bool = false;
+	public var addScoreOnPractice:Bool = false; // service variable for achievement checks and direct scoring
 	public var playbackRate(default, set):Float = 1;
 	public var healthGain:Float = 1;
 	public var healthLoss:Float = 1;
 	public var instakillOnMiss:Bool = false;
-	public var cpuControlled:Bool = false;
+	public var cpuControlled(default, set):Bool = false;
 	public var practiceMode:Bool = false;
 
 	public var unspawnNotes:Array<Note>;
@@ -1343,6 +1343,13 @@ class PlayState extends MusicBeatState
 	{
 		setOnScripts('allowPlayCutscene', value);
 		return allowPlayCutscene = value;
+	}
+
+	function set_cpuControlled(value:Bool):Bool
+	{
+		cpuControlled = value;
+		botplayTxt.visible = cpuControlled && !addScoreOnPractice;
+		return value;
 	}
 
 	function set_songSpeed(value:Float):Float

@@ -186,6 +186,11 @@ class FreeplayMenuState extends MusicBeatState
 	{
 		super.closeSubState();
 
+		#if !switch
+		intendedScore = Highscore.getScore(curSong.songID, curDifficulty);
+		intendedAccuracy = Highscore.getAccuracy(curSong.songID, curDifficulty);
+		#end
+
 		if (startingTweenBGColor)
 		{
 			var newColor:FlxColor = curSong.color;
