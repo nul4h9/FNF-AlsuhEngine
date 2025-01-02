@@ -5984,7 +5984,7 @@ class PlayState extends MusicBeatState
 		}
 
 		for (i in 0...split.length) {
-			obj = getVarInArray(obj, split[i].trim());
+			obj = getVarInArray(obj, convertVariableToNew(getTargetInstanceName(), split[i].trim()));
 		}
 
 		funcToRun = cast obj;

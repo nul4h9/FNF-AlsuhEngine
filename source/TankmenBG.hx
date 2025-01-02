@@ -1,8 +1,6 @@
 package;
 
 import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.math.FlxMath;
 
 class TankmenBG extends Sprite
 {

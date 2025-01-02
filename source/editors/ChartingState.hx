@@ -81,12 +81,9 @@ class ChartingState extends MusicBeatState
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
-		['Call Method', "Value 1: Function name\nValue 2: Arguments of function (with a ', ' between\nthe values)"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		['Set Camera Zoom', "Value 1: New camera zoom\n(Default: Stage Camera Zoom)"],
 		['Set Camera Speed', "Value 1: New camera speed\n(Default: Stage Camera Speed)"],
-		['Camera Tween Pos', "Tweens the position of the GAME CAMERA and LOCKS it. You can use this event and the \"Camera Follow Pos\" one after another respectively.\n\nValue 1: x, y, Duration (with a ', ' between the values)\nValue 2: ease"],
-		['Camera Tween Zoom', "Tweens the game camera's zoom to a specific value in a specific duration in a specific ease\n\nValue 1: TargetZoom, Duration (with a ', ' between the values)\nValue 2: ease"],
 		['Move Camera', "Value 1: Target (Dad, GF, BF)\n\nIf empty, camera moves to\ncharacter by current section."],
 		['Camera Flash', "Value 1: Arguments - Camera, Duration\nExample: \"game, 1\"\n\nValue 2: Color"],
 		['Camera Fade', "Value 1: Arguments - Camera, Duration, Fade in (boolean value)\nExample: \"game, 1, true\"\n\nValue 2: Color"]
