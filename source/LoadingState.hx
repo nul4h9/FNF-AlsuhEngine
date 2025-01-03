@@ -2,6 +2,8 @@ package;
 
 import haxe.io.Path;
 
+import Character.CharacterFile;
+
 import flixel.FlxG;
 import flixel.FlxState;
 import lime.app.Future;
@@ -71,8 +73,15 @@ class LoadingState extends MusicBeatState
 				{
 					checkLoadSong(getSongPath());
 
-					if (PlayState.SONG.needsVoices) {
-						checkLoadSong(getVocalPath());
+					if (PlayState.SONG.needsVoices)
+					{
+						checkLoadSong(getVocalsPath());
+
+						var opponentVocalsPath:String = getOpponentVocalsPath();
+
+						if (Paths.fileExists(opponentVocalsPath, SOUND)) {
+							checkLoadSong(opponentVocalsPath);
+						}
 					}
 				}
 
@@ -166,10 +175,28 @@ class LoadingState extends MusicBeatState
 		return Paths.getInst(PlayState.SONG.songID, diff, true);
 	}
 
-	static function getVocalPath():String
+	static function getVocalsPath():String
 	{
 		var diff:String = CoolUtil.difficultyStuff[PlayState.lastDifficulty] != null && CoolUtil.difficultyStuff[PlayState.lastDifficulty].length == 2 ? CoolUtil.difficultyStuff[PlayState.lastDifficulty][2] : null;
-		return Paths.getVoices(PlayState.SONG.songID, diff, true);
+
+		var characterFile:CharacterFile = Character.getCharacterFile(PlayState.SONG.player1);
+		var postfix:String = ((characterFile != null && characterFile.vocals_file != null && characterFile.vocals_file.length > 0) ? characterFile.vocals_file : 'Player');
+		var playerVocalPath:String = Paths.getVoices(PlayState.SONG.songID, diff, postfix, true);
+
+		if (Paths.fileExists(playerVocalPath, SOUND)) {
+			return playerVocalPath;
+		}
+
+		return Paths.getVoices(PlayState.SONG.songID, diff, null, true);
+	}
+
+	static function getOpponentVocalsPath():String
+	{
+		var diff:String = CoolUtil.difficultyStuff[PlayState.lastDifficulty] != null && CoolUtil.difficultyStuff[PlayState.lastDifficulty].length == 2 ? CoolUtil.difficultyStuff[PlayState.lastDifficulty][2] : null;
+		var characterFile:CharacterFile = Character.getCharacterFile(PlayState.SONG.player2);
+		var postfix:String = ((characterFile != null && characterFile.vocals_file != null && characterFile.vocals_file.length > 0) ? characterFile.vocals_file : 'Opponent');
+
+		return Paths.getVoices(PlayState.SONG.songID, diff, postfix, true);
 	}
 
 	public static function loadAndSwitchState(target:FlxState, stopMusic:Bool = false):Void
@@ -191,8 +218,15 @@ class LoadingState extends MusicBeatState
 
 		var loaded:Bool = isLibraryLoaded('shared');
 
-		if (PlayState.SONG != null) {
-			loaded = isSoundLoaded(getSongPath()) && (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath())) && isLibraryLoaded('shared') && isLibraryLoaded(directory);
+		if (PlayState.SONG != null)
+		{
+			loaded = isSoundLoaded(getSongPath())
+				&& (!PlayState.SONG.needsVoices
+				|| (isSoundLoaded(getVocalsPath())
+				&& (!Paths.fileExists(getOpponentVocalsPath(), SOUND)
+				|| isSoundLoaded(getOpponentVocalsPath()))))
+				&& isLibraryLoaded('shared')
+				&& isLibraryLoaded(directory);
 		}
 
 		if (!loaded) return new LoadingState(target, stopMusic, directory);

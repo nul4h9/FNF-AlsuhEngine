@@ -38,6 +38,7 @@ typedef CharacterFile =
 	var flip_x:Bool;
 	var no_antialiasing:Bool;
 	var healthbar_colors:Array<Int>;
+	var vocals_file:String;
 
 	var gameover_properties:Array<String>;
 	@:optional var _editor_isPlayer:Null<Bool>;
@@ -68,6 +69,7 @@ class Character extends Sprite
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
 	public var hasMissAnimations:Bool = false;
+	public var vocalsFile:String = '';
 
 	public var deathChar:String = 'bf-dead';
 	public var deathSound:String = 'fnf_loss_sfx';
@@ -98,16 +100,17 @@ class Character extends Sprite
 		animOffsets = [];
 		curCharacter = character;
 
-		var characterPath:String = 'characters/$character.json';
-
-		if (Paths.fileExists(characterPath, TEXT))
+		if (characterExists(character))
 		{
 			try {
-				loadCharacterFile(getCharacterFile(characterPath));
+				loadCharacterFile(getCharacterFile(character));
 			}
 			catch (e:Error) {
-				Debug.logError('Error loading character file of "$character":' + e.toString());
+				Debug.logError('Error loading character file of "$character": ' + e.toString());
 			}
+		}
+		else {
+			Debug.logError('Error loading character file of "$character": Character "' + character + '" not exists');
 		}
 
 		skipDance = false;
@@ -169,6 +172,7 @@ class Character extends Sprite
 		singDuration = json.sing_duration;
 		flipX = (json.flip_x != isPlayer);
 		healthColorArray = (json.healthbar_colors != null && json.healthbar_colors.length > 2) ? json.healthbar_colors : [161, 161, 161];
+		vocalsFile = json.vocals_file != null ? json.vocals_file : '';
 		originalFlipX = (json.flip_x == true);
 		editorIsPlayer = json._editor_isPlayer;
 		skipDance = !(json.skip_dance == false); // ????
@@ -337,11 +341,6 @@ class Character extends Sprite
 		else atlas.anim.curFrame = atlas.anim.length - 1;
 	}
 
-	public function hasAnimation(anim:String):Bool
-	{
-		return animOffsets.exists(anim);
-	}
-
 	public var animPaused(get, set):Bool;
 
 	private function get_animPaused():Bool
@@ -449,12 +448,15 @@ class Character extends Sprite
 		return idleSuffix;
 	}
 
-	public static function getCharacterFile(path:String):CharacterFile
+	public static function getCharacterFile(char:String):CharacterFile
 	{
 		var rawJson:String = null;
 
-		if (Paths.fileExists(path, TEXT)) {
-			rawJson = Paths.getTextFromFile(path);
+		if (Paths.fileExists('characters/$char.json', TEXT)) {
+			rawJson = Paths.getTextFromFile('characters/$char.json');
+		}
+		else if (Paths.fileExists('characters/${DEFAULT_CHARACTER}.json', TEXT)) {
+			rawJson = Paths.getTextFromFile('characters/${DEFAULT_CHARACTER}.json');
 		}
 
 		if (rawJson != null && rawJson.length > 0) {
@@ -462,6 +464,15 @@ class Character extends Sprite
 		}
 
 		return null;
+	}
+
+	public static function characterExists(char:String):Bool
+	{
+		if (Paths.fileExists('characters/$char.json', TEXT)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public var isAnimateAtlas:Bool = false;

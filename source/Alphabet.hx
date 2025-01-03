@@ -20,6 +20,7 @@ class Alphabet extends FlxTypedSpriteGroup<AlphaCharacter>
 	public var text(default, set):String;
 
 	public var hasIcon:Bool = false;
+	public var attachedIcon:Sprite;
 	public var bold:Bool = false;
 	public var letters:Array<AlphaCharacter> = [];
 

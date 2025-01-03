@@ -1,5 +1,6 @@
 package options;
 
+
 #if DISCORD_ALLOWED
 import Discord.DiscordClient;
 #end
@@ -11,6 +12,7 @@ import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -480,6 +482,7 @@ class PreferencesSubState extends MusicBeatSubState
 						checkbox.sprTracker = optionText;
 						checkbox.ID = i;
 						optionText.hasIcon = true;
+						optionText.attachedIcon = checkbox;
 						checkboxGroup.add(checkbox);
 					}
 					default:
@@ -593,35 +596,39 @@ class PreferencesSubState extends MusicBeatSubState
 			{
 				var usesCheckbox:Bool = curOption.type == 'bool';
 				var alphabet:Alphabet = grpOptions.members[curSelected];
-	
-				if ((controls.ACCEPT_P || (FlxG.mouse.justPressed && FlxG.mouse.overlaps(alphabet))) && nextAccept <= 0)
+				var checkbox:Sprite = alphabet.attachedIcon;
+				var mousePoint:FlxPoint = FlxG.mouse.getScreenPosition(FlxG.camera);
+				var objPoint:FlxPoint = alphabet.getScreenPosition(null, FlxG.camera);
+				var bullShit:Bool = mousePoint.x >= objPoint.x && mousePoint.y >= objPoint.y && mousePoint.x < objPoint.x + alphabet.width && mousePoint.y < objPoint.y + alphabet.height;
+
+				var objPoint2:FlxPoint = (checkbox != null ? checkbox.getScreenPosition(null, FlxG.camera) : null);
+				var bullShit2:Bool = (objPoint2 != null && checkbox != null) ? (mousePoint.x >= objPoint2.x && mousePoint.y >= objPoint2.y && mousePoint.x < objPoint2.x + checkbox.width && mousePoint.y < objPoint2.y + checkbox.height) : false;
+
+				if ((controls.ACCEPT_P || (FlxG.mouse.justPressed && (bullShit || bullShit2))) && nextAccept <= 0 && usesCheckbox && curOption.canChange)
 				{
-					if (usesCheckbox && curOption.canChange)
+					var finishThing:Void->Void = function():Void
 					{
-						var finishThing:Void->Void = function():Void
-						{
-							FlxG.sound.play(Paths.getSound('scrollMenu'));
-		
-							curOption.value = (curOption.value == true) ? false : true;
-							curOption.change();
+						FlxG.sound.play(Paths.getSound('scrollMenu'));
 	
-							reloadCheckboxes();
-							flickering = false;
-						}
-	
-						if (ClientPrefs.flashingLights)
-						{
-							flickering = true;
-	
-							FlxFlicker.flicker(alphabet, 1, 0.06, true, false, function(flk:FlxFlicker):Void {
-								finishThing();
-							});
-	
-							FlxG.sound.play(Paths.getSound('confirmMenu'));
-						}
-						else
-							finishThing();
+						curOption.value = (curOption.value == true) ? false : true;
+						curOption.change();
+
+						reloadCheckboxes();
+						flickering = false;
 					}
+
+					if (ClientPrefs.flashingLights)
+					{
+						flickering = true;
+
+						FlxFlicker.flicker(alphabet, 1, 0.06, true, false, function(flk:FlxFlicker):Void {
+							finishThing();
+						});
+
+						FlxG.sound.play(Paths.getSound('confirmMenu'));
+					}
+					else
+						finishThing();
 				}
 	
 				if (curOption.canChange)

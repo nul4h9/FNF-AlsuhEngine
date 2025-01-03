@@ -258,7 +258,13 @@ class Note extends FlxSprite
 		this.inEditor = inEditor;
 		this.moves = false;
 
-		x += (ClientPrefs.middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X) + 50;
+		var middleScroll:Bool = ClientPrefs.middleScroll;
+
+		if (PlayState.instance != null) {
+			middleScroll = PlayState.instance.middleScroll;
+		}
+
+		x += (middleScroll ? PlayState.STRUM_X_MIDDLESCROLL : PlayState.STRUM_X) + 50;
 		y -= 2000; // MAKE SURE ITS DEFINITELY OFF SCREEN?
 
 		this.strumTime = strumTime + (!inEditor ? ClientPrefs.noteOffset : 0);

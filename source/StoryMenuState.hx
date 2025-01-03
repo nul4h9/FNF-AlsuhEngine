@@ -241,23 +241,23 @@ class StoryMenuState extends MusicBeatState
 
 			if (CoolUtil.difficultyStuff.length > 1)
 			{
-				if (controls.UI_LEFT_P)
+				if (controls.UI_LEFT_P || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justPressed))
 				{
 					leftArrow.playAnim('press');
 
 					changeDifficulty(-1);
 					holdTimeDiff = 0;
 				}
-				else if (controls.UI_LEFT_R) leftArrow.playAnim('idle');
+				else if (controls.UI_LEFT_R || (FlxG.mouse.overlaps(leftArrow) && FlxG.mouse.justReleased)) leftArrow.playAnim('idle');
 
-				if (controls.UI_RIGHT_P)
+				if (controls.UI_RIGHT_P || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justPressed))
 				{
 					rightArrow.playAnim('press');
 
 					changeDifficulty(1);
 					holdTimeDiff = 0;
 				}
-				else if (controls.UI_RIGHT_R) rightArrow.playAnim('idle');
+				else if (controls.UI_RIGHT_R || (FlxG.mouse.overlaps(rightArrow) && FlxG.mouse.justReleased)) rightArrow.playAnim('idle');
 
 				if (controls.UI_LEFT || controls.UI_RIGHT)
 				{

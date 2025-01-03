@@ -222,6 +222,7 @@ class FreeplayMenuState extends MusicBeatState
 	}
 
 	public static var vocals:FlxSound = null;
+	public static var opponentVocals:FlxSound = null;
 
 	public static function destroyFreeplayVocals():Void
 	{
@@ -232,6 +233,14 @@ class FreeplayMenuState extends MusicBeatState
 		}
 
 		vocals = null;
+
+		if (opponentVocals != null)
+		{
+			opponentVocals.stop();
+			opponentVocals.destroy();
+		}
+
+		opponentVocals = null;
 	}
 
 	var instPlaying:Int = -1;
@@ -394,7 +403,18 @@ class FreeplayMenuState extends MusicBeatState
 					}
 
 					var instPath:String = Paths.getInst(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], true);
-					var vocalPath:String = Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], true);
+
+					var characterFile = Character.getCharacterFile(PlayState.SONG.player1);
+					var postfix:String = ((characterFile != null && characterFile.vocals_file != null && characterFile.vocals_file.length > 0) ? characterFile.vocals_file : 'Player');
+					var playerVocalPath:String = Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], postfix, true);
+
+					if (!Paths.fileExists(playerVocalPath, SOUND)) {
+						playerVocalPath = Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], true);
+					}
+
+					var characterFile = Character.getCharacterFile(PlayState.SONG.player2);
+					var postfix:String = ((characterFile != null && characterFile.vocals_file != null && characterFile.vocals_file.length > 0) ? characterFile.vocals_file : 'Opponent');
+					var opponentVocalPath:String = Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], postfix, true);
 
 					if (Paths.fileExists(instPath, SOUND))
 					{
@@ -405,14 +425,24 @@ class FreeplayMenuState extends MusicBeatState
 
 						FlxG.sound.playMusic(Paths.getInst(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2]), 0.7);
 
-						if (Paths.fileExists(vocalPath, SOUND) && PlayState.SONG.needsVoices)
+						if (Paths.fileExists(playerVocalPath, SOUND) && PlayState.SONG.needsVoices)
 						{
 							vocals = new FlxSound();
-							vocals.loadEmbedded(Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2]));
+							vocals.loadEmbedded(Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], 'Player'));
 							vocals.persist = true;
 							vocals.looped = true;
 							vocals.volume = 0.7;
 							vocals.play();
+						}
+
+						if (Paths.fileExists(opponentVocalPath, SOUND) && PlayState.SONG.needsVoices)
+						{
+							opponentVocals = new FlxSound();
+							opponentVocals.loadEmbedded(Paths.getVoices(PlayState.SONG.songID, CoolUtil.difficultyStuff[curDifficulty][2], 'Opponent'));
+							opponentVocals.persist = true;
+							opponentVocals.looped = true;
+							opponentVocals.volume = 0.7;
+							opponentVocals.play();
 						}
 
 						instPlaying = curSelected;

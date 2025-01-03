@@ -55,6 +55,12 @@ class ChartParser
 				swagNote.scrollFactor.set();
 				unspawnNotes.push(swagNote);
 
+				var middleScroll:Bool = ClientPrefs.middleScroll;
+
+				if (PlayState.instance != null) {
+					middleScroll = PlayState.instance.middleScroll;
+				}
+
 				final roundSus:Int = Math.round(swagNote.sustainLength / Conductor.stepCrochet);
 
 				if (roundSus > 0)
@@ -101,7 +107,7 @@ class ChartParser
 						if (sustainNote.mustPress) {
 							sustainNote.x += FlxG.width / 2; // general offset
 						}
-						else if (ClientPrefs.middleScroll)
+						else if (middleScroll)
 						{
 							sustainNote.x += 310;
 
@@ -115,7 +121,7 @@ class ChartParser
 				if (swagNote.mustPress) {
 					swagNote.x += FlxG.width / 2; // general offset
 				}
-				else if (ClientPrefs.middleScroll) //Up and Right
+				else if (middleScroll) //Up and Right
 				{
 					swagNote.x += 310;
 

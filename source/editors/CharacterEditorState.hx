@@ -474,7 +474,12 @@ class CharacterEditorState extends MusicBeatState
 			final _template:CharacterFile =
 			{
 				skip_dance: false,
-				gameover_properties: null,
+				gameover_properties: [
+					"bf-dead",
+					"fnf_loss_sfx",
+					"gameOver",
+					"gameOverEnd"
+				],
 				animations: [
 					newAnim('idle', 'BF idle dance'),
 					newAnim('singLEFT', 'BF NOTE LEFT0'),
@@ -490,7 +495,8 @@ class CharacterEditorState extends MusicBeatState
 				scale: 1,
 				healthbar_colors: [161, 161, 161],
 				camera_position: [0, 0],
-				position: [0, 0]
+				position: [0, 0],
+				vocals_file: null
 			};
 
 			character.loadCharacterFile(_template);
@@ -602,7 +608,7 @@ class CharacterEditorState extends MusicBeatState
 				{
 					lastOffsets = anim.offsets;
 
-					if (character.animOffsets.exists(animationInputText.text))
+					if (character.hasAnimation(animationInputText.text))
 					{
 						if (!character.isAnimateAtlas) {
 							character.animation.remove(animationInputText.text);
@@ -637,7 +643,7 @@ class CharacterEditorState extends MusicBeatState
 					var resetAnim:Bool = false;
 					if (anim.anim == character.getAnimationName()) resetAnim = true;
 
-					if (character.animOffsets.exists(anim.anim))
+					if (character.hasAnimation(anim.anim))
 					{
 						if (!character.isAnimateAtlas) {
 							character.animation.remove(anim.anim);
@@ -684,6 +690,7 @@ class CharacterEditorState extends MusicBeatState
 
 	var imageInputText:FlxUIInputText;
 	var healthIconInputText:FlxUIInputText;
+	var vocalsInputText:FlxUIInputText;
 	var skipDanceCheckBox:FlxUICheckBox;
 
 	var singDurationStepper:FlxUINumericStepper;
@@ -731,6 +738,7 @@ class CharacterEditorState extends MusicBeatState
 		});
 
 		healthIconInputText = new FlxUIInputText(15, imageInputText.y + 35, 75, healthIcon.character, 8);
+		vocalsInputText = new FlxUIInputText(15, healthIconInputText.y + 35, 75, character.vocalsFile != null ? character.vocalsFile : '', 8);
 
 		skipDanceCheckBox = new FlxUICheckBox(healthIconInputText.x + healthIconInputText.width + 30, healthIconInputText.y, null, null, "Skip Dance?");
 		skipDanceCheckBox.checked = character.skipDance;
@@ -738,7 +746,7 @@ class CharacterEditorState extends MusicBeatState
 			character.skipDance = skipDanceCheckBox.checked;
 		}
 
-		singDurationStepper = new FlxUINumericStepper(15, imageInputText.y + 80, 0.1, 4, 0, 999, 1);
+		singDurationStepper = new FlxUINumericStepper(15, vocalsInputText.y + 45, 0.1, 4, 0, 999, 1);
 
 		scaleStepper = new FlxUINumericStepper(15, singDurationStepper.y + 40, 0.1, 1, 0.05, 10, 1);
 
@@ -782,6 +790,7 @@ class CharacterEditorState extends MusicBeatState
 
 		tab_group.add(new FlxText(15, imageInputText.y - 18, 0, 'Image file name:'));
 		tab_group.add(new FlxText(15, healthIconInputText.y - 18, 0, 'Health icon name:'));
+		tab_group.add(new FlxText(15, vocalsInputText.y - 18, 0, 'Vocals File Postfix:'));
 		tab_group.add(new FlxText(15, singDurationStepper.y - 18, 0, 'Sing Animation length:'));
 		tab_group.add(new FlxText(15, scaleStepper.y - 18, 0, 'Scale:'));
 		tab_group.add(new FlxText(positionXStepper.x, positionXStepper.y - 18, 0, 'Character X/Y:'));
@@ -791,6 +800,7 @@ class CharacterEditorState extends MusicBeatState
 		tab_group.add(reloadImage);
 		tab_group.add(decideIconColor);
 		tab_group.add(healthIconInputText);
+		tab_group.add(vocalsInputText);
 		tab_group.add(skipDanceCheckBox);
 		tab_group.add(singDurationStepper);
 		tab_group.add(scaleStepper);
@@ -823,6 +833,7 @@ class CharacterEditorState extends MusicBeatState
 
 				if (lastIcon != healthIcon.character) updatePresence();
 			}
+			else if (sender == vocalsInputText) character.vocalsFile = vocalsInputText.text;
 			else if (sender == imageInputText) {
 				character.imageFile = imageInputText.text;
 			}
@@ -950,6 +961,7 @@ class CharacterEditorState extends MusicBeatState
 		characterDeathSound.text = character.deathSound;
 		imageInputText.text = character.imageFile;
 		healthIconInputText.text = character.healthIcon;
+		vocalsInputText.text = character.vocalsFile != null ? character.vocalsFile : '';
 		skipDanceCheckBox.checked = character.skipDance;
 		singDurationStepper.value = character.singDuration;
 		scaleStepper.value = character.jsonScale;
@@ -974,7 +986,7 @@ class CharacterEditorState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (animationInputText.hasFocus || animationNameInputText.hasFocus || animationIndicesInputText.hasFocus || imageInputText.hasFocus || healthIconInputText.hasFocus)
+		if (animationInputText.hasFocus || animationNameInputText.hasFocus || animationIndicesInputText.hasFocus || imageInputText.hasFocus || healthIconInputText.hasFocus || vocalsInputText.hasFocus)
 		{
 			ClientPrefs.toggleVolumeKeys(false);
 			return;
@@ -1326,7 +1338,7 @@ class CharacterEditorState extends MusicBeatState
 				character.atlas.anim.addBySymbol(anim, name, fps, loop);
 		}
 
-		if (!character.animOffsets.exists(anim)) character.addOffset(anim, 0, 0);
+		if (!character.hasAnimation(anim)) character.addOffset(anim, 0, 0);
 	}
 
 	inline function newAnim(anim:String, name:String):AnimArray
@@ -1443,6 +1455,7 @@ class CharacterEditorState extends MusicBeatState
 			"flip_x": character.originalFlipX,
 			"no_antialiasing": character.noAntialiasing,
 			"healthbar_colors": character.healthColorArray,
+			"vocals_file": character.vocalsFile,
 			"_editor_isPlayer": character.isPlayer
 		};
 

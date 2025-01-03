@@ -42,7 +42,7 @@ class MainMenuState extends MusicBeatState
 	var magenta:Sprite;
 	var camFollow:FlxObject;
 
-	public static var alsuhEngineVersion:String = '0.1.2h';
+	public static var alsuhEngineVersion:String = '0.2-prerelease';
 
 	override function create():Void
 	{
@@ -154,7 +154,9 @@ class MainMenuState extends MusicBeatState
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
+
 			if (FreeplayMenuState.vocals != null) FreeplayMenuState.vocals.volume += 0.5 * elapsed;
+			if (FreeplayMenuState.opponentVocals != null) FreeplayMenuState.opponentVocals.volume += 0.5 * elapsed;
 		}
 
 		if (!selectedSomethin)

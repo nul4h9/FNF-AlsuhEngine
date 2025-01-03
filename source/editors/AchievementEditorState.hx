@@ -185,7 +185,7 @@ class AchievementEditorState extends MusicBeatState
 		hxFileInputText = new FlxUIInputText(luaFileInputText.x + luaFileInputText.width + 10, luaFileInputText.y, 70, award.hx_code, 8);
 		blockPressWhileTypingOn.push(hxFileInputText);
 
-		maxScoreStepper = new FlxUINumericStepper(missesStepper.x, indexStepper.y + 40, 0.01, award.maxScore, 0, 999, 2);
+		maxScoreStepper = new FlxUINumericStepper(missesStepper.x, descInputText.y + 40, 0.01, award.maxScore, 0, 999, 2);
 		blockPressWhileTypingOnStepper.push(maxScoreStepper);
 
 		tab_group.add(awardNameInputText);

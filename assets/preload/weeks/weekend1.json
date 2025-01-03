@@ -1,0 +1,75 @@
+{
+	"itemColor": [
+		65,
+		60,
+		174
+	],
+	"freeplayColor": [146, 113, 253],
+	"songs": [
+		{
+			"songID": "darnell",
+			"songName": "Darnell",
+			"icon": "darnell",
+			"color": [
+				65,
+				60,
+				174
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "lit-up",
+			"songName": "Lit Up",
+			"icon": "darnell",
+			"color": [
+				65,
+				60,
+				174
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "2hot",
+			"songName": "2Hot",
+			"icon": "darnell",
+			"color": [
+				65,
+				60,
+				174
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		},
+		{
+			"songID": "blazin",
+			"songName": "Blazin'",
+			"icon": "darnell",
+			"color": [
+				65,
+				60,
+				174
+			],
+			"difficulties": [],
+			"defaultDifficulty": null
+		}
+	],
+	"weekCharacters": [
+		"darnell",
+		"pico-player",
+		"nene"
+	],
+	"weekBackground": "phillystreets",
+	"weekBefore": "week7",
+	"itemFile": "weekend1",
+	"storyName": "Due Debts",
+	"weekName": "Weekend 1",
+	"weekID": "weekend1",
+	"startUnlocked": true,
+	"hiddenUntilUnlocked": false,
+	"hideStoryMode": false,
+	"hideFreeplay": false,
+	"difficulties": [],
+	"defaultDifficulty": null
+}

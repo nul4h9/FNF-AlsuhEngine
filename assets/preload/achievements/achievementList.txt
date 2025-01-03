@@ -6,6 +6,7 @@ week4_nomiss
 week5_nomiss
 week6_nomiss
 week7_nomiss
+weekend1_nomiss
 ur_bad
 ur_good
 roadkill_enthusiast
