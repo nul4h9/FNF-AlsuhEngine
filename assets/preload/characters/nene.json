@@ -67,7 +67,7 @@
 	],
 	"no_antialiasing": false,
 	"image": "characters/Nene",
-	"position": [0, 200],
+	"position": [50, 225],
 	"healthicon": "face",
 	"flip_x": false,
 	"healthbar_colors": [161, 161, 161],

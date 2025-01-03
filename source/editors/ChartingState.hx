@@ -2152,7 +2152,7 @@ class ChartingState extends MusicBeatState
 				{
 					FlxG.sound.music.pause();
 					if (vocals != null) vocals.pause();
-					if (hasOpponentVocals && opponentVocals != null) vocals.pause();
+					if (hasOpponentVocals && opponentVocals != null) opponentVocals.pause();
 				}
 				else
 				{

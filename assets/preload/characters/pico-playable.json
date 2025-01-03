@@ -1,4 +1,10 @@
 {
+	"gameover_properties": [
+		"pico-dead",
+		"fnf_loss_sfx-pico",
+		"gameOver-pico",
+		"gameOverEnd-pico"
+	],
 	"animations": [
 		{
 			"offsets": [3, 0],

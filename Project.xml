@@ -32,7 +32,7 @@
 	<define name="MP3_ALLOWED" if="cpp || flash || html5" />
 
 	<define name="LUA_ALLOWED" if="desktop cpp" />
-	<define name="HSCRIPT_ALLOWED" if="desktop" />
+	<define name="HSCRIPT_ALLOWED" />
 	<define name="hscriptPos" if="HSCRIPT_ALLOWED"/>
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -113,7 +113,7 @@
 	<assets path="assets/week6"         library="week6"           exclude="*.mp3"    unless="MP3_ALLOWED"/>
 	<assets path="assets/week7"         library="week7"           exclude="*.ogg"    if="MP3_ALLOWED"/>
 	<assets path="assets/week7"         library="week7"           exclude="*.mp3"    unless="MP3_ALLOWED"/>
-	<assets path="assets/week7"         library="week7"           exclude="*.ogg"    if="MP3_ALLOWED"/>
+	<assets path="assets/weekend1"      library="weekend1"        exclude="*.ogg"    if="MP3_ALLOWED"/>
 	<assets path="assets/weekend1"      library="weekend1"        exclude="*.mp3"    unless="MP3_ALLOWED"/>
 
 	<section if="MODS_ALLOWED">
@@ -129,6 +129,8 @@
 	<haxelib name="flixel-ui" version="2.6.0"/>
 	<haxelib name="flixel-addons" version="3.2.1"/>
 	<haxelib name="flxanimate" />
+
+	<haxedev set='webgl' />
 
 	<haxelib name="hxdiscord_rpc" version="1.1.1" if="DISCORD_ALLOWED"/>
 	<haxelib name="hxCodec" version="3.0.2" if="VIDEOS_ALLOWED" unless="html5"/>

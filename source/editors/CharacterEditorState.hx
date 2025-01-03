@@ -608,7 +608,7 @@ class CharacterEditorState extends MusicBeatState
 				{
 					lastOffsets = anim.offsets;
 
-					if (character.animOffsets.exists(animationInputText.text))
+					if (character.hasAnimation(animationInputText.text))
 					{
 						if (!character.isAnimateAtlas) {
 							character.animation.remove(animationInputText.text);
@@ -643,7 +643,7 @@ class CharacterEditorState extends MusicBeatState
 					var resetAnim:Bool = false;
 					if (anim.anim == character.getAnimationName()) resetAnim = true;
 
-					if (character.animOffsets.exists(anim.anim))
+					if (character.hasAnimation(anim.anim))
 					{
 						if (!character.isAnimateAtlas) {
 							character.animation.remove(anim.anim);
@@ -1338,7 +1338,7 @@ class CharacterEditorState extends MusicBeatState
 				character.atlas.anim.addBySymbol(anim, name, fps, loop);
 		}
 
-		if (!character.animOffsets.exists(anim)) character.addOffset(anim, 0, 0);
+		if (!character.hasAnimation(anim)) character.addOffset(anim, 0, 0);
 	}
 
 	inline function newAnim(anim:String, name:String):AnimArray

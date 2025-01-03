@@ -341,11 +341,6 @@ class Character extends Sprite
 		else atlas.anim.curFrame = atlas.anim.length - 1;
 	}
 
-	public function hasAnimation(anim:String):Bool
-	{
-		return animOffsets.exists(anim);
-	}
-
 	public var animPaused(get, set):Bool;
 
 	private function get_animPaused():Bool

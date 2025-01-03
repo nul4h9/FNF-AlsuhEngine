@@ -96,6 +96,8 @@ class StageData
 			case 'senpai' | 'roses': return 'school';
 			case 'thorns': return 'schoolEvil';
 			case 'ugh' | 'guns' | 'stress': return 'tank';
+			case 'darnell' | 'lit-up' | '2hot': return 'phillyStreets';
+			case 'blazin': return 'phillyBlazin';
 		}
 
 		return 'stage';

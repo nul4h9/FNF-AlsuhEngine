@@ -19,12 +19,17 @@ class SwagAnimateSprite extends FlxAnimate
 		anim.play(name, forced, reverse, startFrame);
 		
 		var daOffset:Array<Float> = animOffsets.get(name);
-		if (animOffsets.exists(name)) offset.set(daOffset[0], daOffset[1]);
+		if (hasAnimation(name)) offset.set(daOffset[0], daOffset[1]);
 	}
 
 	public function addOffset(name:String, x:Float, y:Float):Void
 	{
 		animOffsets.set(name, [x, y]);
+	}
+
+	public function hasAnimation(anim:String):Bool
+	{
+		return animOffsets.exists(anim);
 	}
 
 	override function destroy():Void
