@@ -206,23 +206,6 @@ class Note extends FlxSprite
 					hitsound = 'cancelMenu';
 					hitsoundChartEditor = false;
 				}
-				case 'Fire Note':
-				{
-					rgbShader.enabled = false;
-
-					noteSplashData.a = 1;
-					noteSplashData.texture = 'smokeSplash';
-					noteSplashData.useRGBShader = false;
-				}
-				case 'rocket':
-				{
-					rgbShader.enabled = false;
-
-					noteSplashData.a = 1;
-					noteSplashData.quick = true;
-					noteSplashData.texture = 'explosion';
-					noteSplashData.useRGBShader = false;
-				}
 				case 'Alt Animation': animSuffix = '-alt';
 				case 'No Animation':
 				{
