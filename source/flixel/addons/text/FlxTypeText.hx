@@ -1,5 +1,11 @@
 package flixel.addons.text;
 
+// TODO: remove this check when min flixel version is 5.6.0,
+// So that FlxAddonDefines will handle this
+#if (flixel < "5.3.0")
+#error "Flixel-Addons is not compatible with flixel versions older than 5.3.0";
+#end
+
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
@@ -170,12 +176,12 @@ class FlxTypeText extends FlxText
 	 * Create a FlxTypeText object, which is very similar to FlxText except that the text is initially hidden and can be
 	 * animated one character at a time by calling start().
 	 *
-	 * @param	X				The X position for this object.
-	 * @param	Y				The Y position for this object.
-	 * @param	Width			The width of this object. Text wraps automatically.
-	 * @param	Text			The text that will ultimately be displayed.
-	 * @param	Size			The size of the text.
-	 * @param	EmbeddedFont	Whether this text field uses embedded fonts or not.
+	 * @param  X        The X position for this object.
+	 * @param  Y        The Y position for this object.
+	 * @param  Width      The width of this object. Text wraps automatically.
+	 * @param  Text      The text that will ultimately be displayed.
+	 * @param  Size      The size of the text.
+	 * @param  EmbeddedFont  Whether this text field uses embedded fonts or not.
 	 */
 	public function new(X:Float, Y:Float, Width:Int, Text:String, Size:Int = 8, EmbeddedFont:Bool = true)
 	{
@@ -278,10 +284,10 @@ class FlxTypeText extends FlxText
 	/**
 	 * Begin an animated erase of this text.
 	 *
-	 * @param	Delay			Optionally, set the delay between characters. Can also be set separately.
-	 * @param	ForceRestart	Whether or not to start this animation over if currently animating; false by default.
-	 * @param	SkipKeys		An array of keys as string values (e.g. `[FlxKey.SPACE, FlxKey.L]`) that will advance the text. Can also be set separately.
-	 * @param	Callback		An optional callback function, to be called when the erasing animation is complete.
+	 * @param  Delay      Optionally, set the delay between characters. Can also be set separately.
+	 * @param  ForceRestart  Whether or not to start this animation over if currently animating; false by default.
+	 * @param  SkipKeys    An array of keys as string values (e.g. `[FlxKey.SPACE, FlxKey.L]`) that will advance the text. Can also be set separately.
+	 * @param  Callback    An optional callback function, to be called when the erasing animation is complete.
 	 */
 	public function erase(?Delay:Float, ForceRestart:Bool = false, ?SkipKeys:Array<FlxKey>, ?Callback:Void->Void):Void
 	{
@@ -317,7 +323,7 @@ class FlxTypeText extends FlxText
 	/**
 	 * Reset the text with a new text string. Automatically cancels typing, and erasing.
 	 *
-	 * @param	Text	The text that will ultimately be displayed.
+	 * @param  Text  The text that will ultimately be displayed.
 	 */
 	public function resetText(Text:String):Void
 	{
@@ -335,13 +341,13 @@ class FlxTypeText extends FlxText
 	 * Especially with sound enabled, this can give a more "natural" feel to the typing.
 	 * Much more noticable with longer text delays.
 	 *
-	 * @param	Amount		How much variation to add, as a percentage of delay (0.5 = 50% is the maximum amount that will be added or subtracted from the delay variable). Only valid if >0 and <1.
-	 * @param	On			Whether or not to add the random variation. True by default.
+	 * @param  Amount    How much variation to add, as a percentage of delay (0.5 = 50% is the maximum amount that will be added or subtracted from the delay variable). Only valid if >0 and <1.
+	 * @param  On      Whether or not to add the random variation. True by default.
 	 */
 	public function setTypingVariation(Amount:Float = 0.5, On:Bool = true):Void
 	{
-		_typingVariation = On;
-		_typeVarPercent = FlxMath.bound(Amount, 0, 1);
+	_typingVariation = On;
+	_typeVarPercent = FlxMath.bound(Amount, 0, 1);
 	}
 
 	/**
@@ -360,7 +366,7 @@ class FlxTypeText extends FlxText
 		{
 			for (sound in sounds)
 			{
-				sound.stop();
+			sound.stop();
 			}
 		}
 

@@ -129,7 +129,7 @@ class StrumNote extends FlxSprite
 
 		var vanillaShit:String = ' static instance ' + vanillaInt[noteData];
 		var shitMyPants:String = 'arrow' + vanillaShit + '0000';
-		var vanillaAllowed:Bool = frames.getByName(shitMyPants) != null;
+		var vanillaAllowed:Bool = frames.exists(shitMyPants);
 
 		var pointers:Array<String> = [for (i in Note.pointers.copy()) i.toUpperCase()];
 
@@ -140,9 +140,11 @@ class StrumNote extends FlxSprite
 		animation.addByPrefix(Note.colArray[noteData], 'arrow' + pointers[noteData]);
 		animation.addByPrefix('static', 'arrow' + pointers[noteData]);
 
+		var shitInPants:String = ' instance 1';
+
 		var lowCol:String = Note.pointers[noteData];
-		animation.addByPrefix('pressed', lowCol + ' press', 24, false);
-		animation.addByPrefix('confirm', lowCol + ' confirm', 24, false);
+		animation.addByPrefix('pressed', lowCol + ' press' + (vanillaAllowed ? shitInPants : ''), 24, false);
+		animation.addByPrefix('confirm', lowCol + ' confirm' + (vanillaAllowed ? shitInPants : ''), 24, false);
 	}
 
 	function loadPixelNoteAnims():Void

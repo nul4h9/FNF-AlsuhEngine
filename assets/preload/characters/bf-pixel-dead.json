@@ -6,6 +6,17 @@
 				-12
 			],
 			"loop": false,
+			"anim": "idle",
+			"fps": 24,
+			"name": "RETRY CONFIRM",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-30,
+				-12
+			],
+			"loop": false,
 			"anim": "deathConfirm",
 			"fps": 24,
 			"name": "RETRY CONFIRM",
@@ -50,8 +61,8 @@
 	],
 	"name": "Boyfriend",
 	"camera_position": [
-		0,
-		0
+		-250,
+		-200
 	],
 	"sing_duration": 4,
 	"scale": 6

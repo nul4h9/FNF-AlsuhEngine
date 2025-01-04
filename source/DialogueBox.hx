@@ -102,7 +102,7 @@ class DialogueBox extends FlxSpriteGroup
 
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
-				box.animation.addByIndices('normal', 'Text Box Appear instance 1', [4], "", 24);
+				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
 			}
 			case 'roses':
 			{
@@ -112,7 +112,7 @@ class DialogueBox extends FlxSpriteGroup
 
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
-				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH instance 1', [4], "", 24);
+				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
 			}
 			case 'thorns':
 			{
@@ -120,7 +120,7 @@ class DialogueBox extends FlxSpriteGroup
 
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
-				box.animation.addByIndices('normal', 'Spirit Textbox spawn instance 1', [11], "", 24);
+				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
 
 				var face:Sprite = new Sprite(320, 170);
 				face.loadGraphic(Paths.getImage('weeb/spiritFaceForward'));

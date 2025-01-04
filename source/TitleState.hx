@@ -521,7 +521,7 @@ class TitleState extends MusicBeatState
 				remove(textGroup);
 			}
 
-			FlxG.camera.flash(FlxColor.WHITE, (initialized ? 1 : 4));
+			FlxG.camera.flash(FlxColor.WHITE, 4);
 
 			skippedIntro = true;
 		}

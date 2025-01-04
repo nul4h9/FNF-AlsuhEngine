@@ -21,7 +21,7 @@
 	<!-- _______________________ ALSUH ENGINE CUSTOMIZATION _____________________ -->
 
 	<define name="ALSUH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE ALL WATERMARKS ON ENGINE -->
-	<define name="CHECK_FOR_UPDATES" if="officialBuild" />
+	<define name="CHECK_FOR_UPDATES" if="officialBuild desktop" />
 	<define name="CRASH_HANDLER" if="desktop release" />
 
 	<define name="ACHIEVEMENTS_ALLOWED" />
@@ -125,14 +125,14 @@
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="flixel" version="5.5.0"/>
-	<haxelib name="flixel-ui" version="2.6.0"/>
-	<haxelib name="flixel-addons" version="3.2.1"/>
+	<haxelib name="flixel" version="5.7.2"/>
+	<haxelib name="flixel-ui" version="2.6.1"/>
+	<haxelib name="flixel-addons" version="3.2.3"/>
 	<haxelib name="flxanimate" />
 
 	<haxedev set='webgl' />
 
-	<haxelib name="hxdiscord_rpc" version="1.1.1" if="DISCORD_ALLOWED"/>
+	<haxelib name="hxdiscord_rpc" version="1.2.4" if="DISCORD_ALLOWED"/>
 	<haxelib name="hxCodec" version="3.0.2" if="VIDEOS_ALLOWED" unless="html5"/>
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="hscript" if="HSCRIPT_ALLOWED"/>

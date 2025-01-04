@@ -3,20 +3,20 @@ package flixel.addons.ui;
 #if FLX_MOUSE
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup;
-import flixel.text.FlxText;
-import flixel.util.FlxDestroyUtil;
+import flixel.group.*;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.util.FlxSpriteUtil;
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxDestroyUtil;
+import flixel.util.FlxSpriteUtil;
 
 /**
  * A slider GUI element for float and integer manipulation.
  * @author Gama11
  */
-class FlxSlider extends FlxSpriteGroup
+class FlxSlider extends #if (flixel < "5.7.0") FlxSpriteGroup #else FlxSpriteContainer #end
 {
 	/**
 	 * The horizontal line in the background.
@@ -289,7 +289,7 @@ class FlxSlider extends FlxSpriteGroup
 
 			if (FlxG.mouse.pressed)
 			{
-				handle.x = FlxG.mouse.getPositionInCameraView(camera).x;
+				handle.x = FlxG.mouse.screenX;
 				updateValue();
 
 				#if FLX_SOUND_SYSTEM
@@ -341,6 +341,10 @@ class FlxSlider extends FlxSpriteGroup
 
 	private function mouseInRect(rect:flixel.math.FlxRect) 
 	{
+		#if (flixel >= "5.7.0")
+		final camera = getCameras()[0];// else use this.camera
+		#end
+
 		if (FlxMath.pointInFlxRect(FlxG.mouse.getPositionInCameraView(camera).x,FlxG.mouse.getPositionInCameraView(camera).y,rect)) return true;
 		else return false;
 	}

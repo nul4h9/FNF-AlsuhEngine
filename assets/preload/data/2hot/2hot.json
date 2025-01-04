@@ -338,7 +338,7 @@
 						8901.0989010989,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						9065.93406593407,
@@ -365,25 +365,25 @@
 						9560.43956043956,
 						2,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						9890.10989010989,
 						3,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						9890.10989010989,
 						5,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						10219.7802197802,
 						4,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					]
 				],
 				"mustHitSection": false
@@ -1372,7 +1372,7 @@
 						40549.0989010989,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						40714.2857142857,
@@ -1404,7 +1404,7 @@
 						41208.4395604396,
 						2,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						41373.6263736264,
@@ -1415,19 +1415,19 @@
 						41538.1098901099,
 						3,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						41538.1098901099,
 						5,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						41867.7802197802,
 						4,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					]
 				],
 				"mustHitSection": false
@@ -1745,7 +1745,7 @@
 						51098.9010989011,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						51263.7362637363,
@@ -1782,25 +1782,25 @@
 						51758.2417582418,
 						2,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						52087.9120879121,
 						3,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						52087.9120879121,
 						5,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						52417.5824175824,
 						4,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					]
 				],
 				"mustHitSection": false
@@ -3212,7 +3212,7 @@
 						80109.8901098901,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						80109.8901098901,
@@ -3254,25 +3254,25 @@
 						80769.2307692308,
 						2,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						81098.9010989011,
 						3,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						81098.9010989011,
 						5,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						81428.5714285714,
 						4,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					]
 				],
 				"mustHitSection": false
@@ -3501,7 +3501,7 @@
 						85384.6153846153,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						85384.6153846154,
@@ -3543,25 +3543,25 @@
 						86043.956043956,
 						2,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						86373.6263736263,
 						3,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						86373.6263736263,
 						5,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						86703.2967032966,
 						4,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					],
 					[
 						87032.967032967,
@@ -4990,7 +4990,7 @@
 						117032.967032967,
 						5,
 						0,
-						"weekend-1-lightcan"
+						"lightcan"
 					],
 					[
 						117115.384615385,
@@ -5027,7 +5027,7 @@
 						117692.307692308,
 						6,
 						0,
-						"weekend-1-kickcan"
+						"kickcan"
 					],
 					[
 						117692.307692308,
@@ -5048,19 +5048,19 @@
 						118021.978021978,
 						7,
 						0,
-						"weekend-1-kneecan"
+						"kneecan"
 					],
 					[
 						118021.978021978,
 						1,
 						0,
-						"weekend-1-cockgun"
+						"cockgun"
 					],
 					[
 						118351.648351648,
 						0,
 						0,
-						"weekend-1-firegun"
+						"firegun"
 					]
 				],
 				"mustHitSection": true

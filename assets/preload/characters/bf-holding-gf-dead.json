@@ -1,6 +1,17 @@
 {
 	"animations": [
 		{
+			"loop": false,
+			"offsets": [
+				37,
+				-4
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "BF Dead with GF Loop",
+			"indices": []
+		},
+		{
 			"loop": true,
 			"offsets": [
 				37,

@@ -1,7 +1,5 @@
 package;
 
-import flixel.FlxSprite;
-
 class BackgroundDancer extends Sprite
 {
 	public function new(x:Float, y:Float):Void
