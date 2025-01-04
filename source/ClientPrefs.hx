@@ -24,7 +24,10 @@ class ClientPrefs
 		'defaultButtons',
 		'arrowRGB',
 		'arrowRGBPixel',
+		'defaultArrowRGB',
+		'defaultArrowRGBPixel',
 		'gameplaySettings',
+		'defaultGameplaySettings',
 	];
 
 	public static var fullScreen:Bool = false;
@@ -320,6 +323,9 @@ class ClientPrefs
 		[0xFFFF884E, 0xFFFFFAF5, 0xFF6C0000]
 	];
 
+	public static var defaultArrowRGB:Array<Array<FlxColor>> = [];
+	public static var defaultArrowRGBPixel:Array<Array<FlxColor>> = [];
+
 	public static function saveNoteColors():Void
 	{
 		var save:FlxSave = new FlxSave();
@@ -359,6 +365,8 @@ class ClientPrefs
 		'opponentplay' => false
 	];
 
+	public static var defaultGameplaySettings:Map<String, Dynamic> = [];
+
 	public static function saveGameplaySettings():Void
 	{
 		var save:FlxSave = new FlxSave();
@@ -387,16 +395,16 @@ class ClientPrefs
 
 	public static function getGameplaySetting(name:String, defaultValue:Dynamic = null, ?customDefaultValue:Bool = false):Dynamic
 	{
-		if (!customDefaultValue) defaultValue = defaultData.gameplaySettings.get(name);
+		if (!customDefaultValue) defaultValue = defaultGameplaySettings.get(name);
 		return gameplaySettings.exists(name) ? gameplaySettings.get(name) : defaultValue;
 	}
 
 	public static function loadDefaultSettings():Void
 	{
-		defaultData.arrowRGB = arrowRGB.copy();
-		defaultData.arrowRGBPixel = arrowRGBPixel.copy();
+		defaultArrowRGB = arrowRGB.copy();
+		defaultArrowRGBPixel = arrowRGBPixel.copy();
 
-		defaultData.gameplaySettings = gameplaySettings.copy();
+		defaultGameplaySettings = gameplaySettings.copy();
 
 		defaultKeys = keyBinds.copy();
 		defaultButtons = gamepadBinds.copy();

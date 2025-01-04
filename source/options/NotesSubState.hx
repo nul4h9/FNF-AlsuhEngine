@@ -544,8 +544,8 @@ class NotesSubState extends MusicBeatSubState
 		}
 		else if (controls.RESET_P && hexTypeNum < 0)
 		{
-			var arrowRGB:Array<Array<FlxColor>> = ClientPrefs.defaultData.arrowRGB;
-			var arrowRGBPixel:Array<Array<FlxColor>> = ClientPrefs.defaultData.arrowRGBPixel;
+			var arrowRGB:Array<Array<FlxColor>> = ClientPrefs.defaultArrowRGB;
+			var arrowRGBPixel:Array<Array<FlxColor>> = ClientPrefs.defaultArrowRGBPixel;
 
 			if (FlxG.keys.pressed.SHIFT || FlxG.gamepads.anyJustPressed(LEFT_SHOULDER))
 			{

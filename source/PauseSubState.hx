@@ -5,7 +5,6 @@ import Discord.DiscordClient;
 #end
 
 import flixel.FlxG;
-import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;

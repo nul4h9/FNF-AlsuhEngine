@@ -239,7 +239,7 @@ class PreferencesSubState extends MusicBeatSubState
 		label.selectable = false;
 		addOption(label);
 
-		var noteSkins:Array<String> = Paths.mergeAllTextsNamed('images/noteSkins/list.txt', 'shared');
+		var noteSkins:Array<String> = Paths.mergeAllTextsNamed('images/noteSkins/list.txt', Paths.getLibraryPath('', 'shared'));
 
 		if (noteSkins.length > 0)
 		{
@@ -277,7 +277,7 @@ class PreferencesSubState extends MusicBeatSubState
 			noteOptionID = optionsArray.length - 1;
 		}
 		
-		var noteSplashes:Array<String> = Paths.mergeAllTextsNamed('images/noteSplashes/list.txt', 'shared');
+		var noteSplashes:Array<String> = Paths.mergeAllTextsNamed('images/noteSplashes/list.txt', Paths.getLibraryPath('', 'shared'));
 
 		if (noteSplashes.length > 0)
 		{

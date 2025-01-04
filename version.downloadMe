@@ -1,7 +1,10 @@
-0.2;
+0.2.1;
 - Added Weekend 1 Port (Beta Version)
 - Added Opponent Vocals Support
 - Added Custom Character Vocals Support
 - Added Mouse clicking to change difficulty on Story Menu
 - Added HScript Support on HTML5
-- Updated Flixel libraries
+- Updated Flixel libraries to version 5.7.2
+- Fixed bottom boppers "Hey!" animation on "mall" stage
+- Fixed Note and Splash Skins Settings on HTML5
+- Fixed reseting setting 'Pause Screen Song'

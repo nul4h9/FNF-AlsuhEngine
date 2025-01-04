@@ -577,7 +577,9 @@ class GameplayOption
 		this.name = name;
 		this.variable = variable;
 		this.type = type;
-		defaultValue = ClientPrefs.defaultData.gameplaySettings.get(this.variable);
+
+		defaultValue = ClientPrefs.defaultGameplaySettings.get(this.variable);
+
 		this.options = options;
 
 		if (defaultValue == 'null variable value')

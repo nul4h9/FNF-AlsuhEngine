@@ -176,9 +176,7 @@ class Paths
 
 	public static function getPath(file:String, type:AssetType, ?library:Null<String> = null):String
 	{
-		if (library != null) {
-			return getLibraryPath(file, library);
-		}
+		if (library != null) return getLibraryPath(file, library);
 
 		if (currentLevel != null)
 		{
@@ -187,17 +185,11 @@ class Paths
 			if (currentLevel != 'shared')
 			{
 				levelPath = getLibraryPath(file, currentLevel);
-
-				if (OpenFlAssets.exists(levelPath, type)) {
-					return levelPath;
-				}
+				if (OpenFlAssets.exists(levelPath, type)) return levelPath;
 			}
 
 			levelPath = getLibraryPath(file, 'shared');
-
-			if (OpenFlAssets.exists(levelPath, type)) {
-				return levelPath;
-			}
+			if (OpenFlAssets.exists(levelPath, type)) return levelPath;
 		}
 
 		return getPreloadPath(file);
@@ -205,7 +197,7 @@ class Paths
 
 	public static function getLibraryPath(file:String = '', library:String = 'preload'):String
 	{
-		return if (library == "preload" || library == "default") getPreloadPath(file) else getLibraryPathForce(file, library);
+		return (library == 'preload' || library == 'default') ? getPreloadPath(file) : getLibraryPathForce(file, library);
 	}
 
 	public static function getLibraryPathForce(file:String = '', library:String):String
@@ -892,7 +884,7 @@ class Paths
 		defaultDirectory = defaultDirectory.trim();
 
 		if (!defaultDirectory.endsWith('/')) defaultDirectory += '/';
-		if (!defaultDirectory.startsWith('assets/')) defaultDirectory = 'assets/$defaultDirectory';
+		if (!defaultDirectory.startsWith('assets/') && !defaultDirectory.contains(':')) defaultDirectory = 'assets/$defaultDirectory';
 
 		var mergedList:Array<String> = [];
 		var paths:Array<String> = directoriesWithFile([defaultDirectory], path);

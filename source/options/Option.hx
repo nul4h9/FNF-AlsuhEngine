@@ -70,11 +70,11 @@ class Option
 			}
 			case 'string':
 			{
-				if (defaultValue == null) defaultValue = '';
-
-				if (options.length > 0) {
+				if (options.length > 0 && defaultValue == null) {
 					defaultValue = options[0];
 				}
+
+				if (defaultValue == null) defaultValue = '';
 			}
 			case 'keybind':
 			{
