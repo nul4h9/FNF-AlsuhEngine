@@ -5,6 +5,8 @@ import flixel.group.FlxSpriteGroup;
 
 import Character;
 
+using StringTools;
+
 class DarnellBlazinHandler
 {
 	public function new():Void {}
@@ -31,70 +33,70 @@ class DarnellBlazinHandler
 		// Override the hit note animation.
 		switch (note.noteType)
 		{
-			case "weekend-1-punchlow":
+			case "punchlow":
 				playHitLowAnim();
-			case "weekend-1-punchlowblocked":
+			case "punchlowblocked":
 				playBlockAnim();
-			case "weekend-1-punchlowdodged":
+			case "punchlowdodged":
 				playDodgeAnim();
-			case "weekend-1-punchlowspin":
+			case "punchlowspin":
 				playSpinAnim();
 
-			case "weekend-1-punchhigh":
+			case "punchhigh":
 				playHitHighAnim();
-			case "weekend-1-punchhighblocked":
+			case "punchhighblocked":
 				playBlockAnim();
-			case "weekend-1-punchhighdodged":
+			case "punchhighdodged":
 				playDodgeAnim();
-			case "weekend-1-punchhighspin":
+			case "punchhighspin":
 				playSpinAnim();
 
 			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-blockhigh":
+			case "blockhigh":
 				playPunchHighAnim();
-			case "weekend-1-blocklow":
+			case "blocklow":
 				playPunchLowAnim();
-			case "weekend-1-blockspin":
+			case "blockspin":
 				playPunchHighAnim();
 
 			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-dodgehigh":
+			case "dodgehigh":
 				playPunchHighAnim();
-			case "weekend-1-dodgelow":
+			case "dodgelow":
 				playPunchLowAnim();
-			case "weekend-1-dodgespin":
+			case "dodgespin":
 				playPunchHighAnim();
 
 			// Attempt to punch, Pico ALWAYS gets hit.
-			case "weekend-1-hithigh":
+			case "hithigh":
 				playPunchHighAnim();
-			case "weekend-1-hitlow":
+			case "hitlow":
 				playPunchLowAnim();
-			case "weekend-1-hitspin":
+			case "hitspin":
 				playPunchHighAnim();
 
 			// Fail to dodge the uppercut.
-			case "weekend-1-picouppercutprep":
+			case "picouppercutprep":
 				// Continue whatever animation was playing before
 				// playIdleAnim();
-			case "weekend-1-picouppercut":
-				playUppercutHitAnim();
+			case "picouppercut" | "picouppercut-final":
+				playUppercutHitAnim(note.noteType.endsWith('-final'));
 
 			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-darnelluppercutprep":
+			case "darnelluppercutprep":
 				playUppercutPrepAnim();
-			case "weekend-1-darnelluppercut":
+			case "darnelluppercut":
 				playUppercutAnim();
 
-			case "weekend-1-idle":
+			case "idle":
 				playIdleAnim();
-			case "weekend-1-fakeout":
+			case "fakeout":
 				playCringeAnim();
-			case "weekend-1-taunt":
+			case "taunt":
 				playPissedConditionalAnim();
-			case "weekend-1-tauntforce":
+			case "tauntforce":
 				playPissedAnim();
-			case "weekend-1-reversefakeout":
+			case "reversefakeout":
 				playFakeoutAnim();
 		}
 
@@ -126,71 +128,71 @@ class DarnellBlazinHandler
 		switch (note.noteType)
 		{
 			// Pico tried and failed to punch, punch back!
-			case "weekend-1-punchlow":
+			case "punchlow":
 				playPunchLowAnim();
-			case "weekend-1-punchlowblocked":
+			case "punchlowblocked":
 				playPunchLowAnim();
-			case "weekend-1-punchlowdodged":
+			case "punchlowdodged":
 				playPunchLowAnim();
-			case "weekend-1-punchlowspin":
+			case "punchlowspin":
 				playPunchLowAnim();
 
 			// Pico tried and failed to punch, punch back!
-			case "weekend-1-punchhigh":
+			case "punchhigh":
 				playPunchHighAnim();
-			case "weekend-1-punchhighblocked":
+			case "punchhighblocked":
 				playPunchHighAnim();
-			case "weekend-1-punchhighdodged":
+			case "punchhighdodged":
 				playPunchHighAnim();
-			case "weekend-1-punchhighspin":
-				playPunchHighAnim();
-
-			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-blockhigh":
-				playPunchHighAnim();
-			case "weekend-1-blocklow":
-				playPunchLowAnim();
-			case "weekend-1-blockspin":
+			case "punchhighspin":
 				playPunchHighAnim();
 
 			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-dodgehigh":
+			case "blockhigh":
 				playPunchHighAnim();
-			case "weekend-1-dodgelow":
+			case "blocklow":
 				playPunchLowAnim();
-			case "weekend-1-dodgespin":
+			case "blockspin":
+				playPunchHighAnim();
+
+			// Attempt to punch, Pico dodges or gets hit.
+			case "dodgehigh":
+				playPunchHighAnim();
+			case "dodgelow":
+				playPunchLowAnim();
+			case "dodgespin":
 				playPunchHighAnim();
 
 			// Attempt to punch, Pico ALWAYS gets hit.
-			case "weekend-1-hithigh":
+			case "hithigh":
 				playPunchHighAnim();
-			case "weekend-1-hitlow":
+			case "hitlow":
 				playPunchLowAnim();
-			case "weekend-1-hitspin":
+			case "hitspin":
 				playPunchHighAnim();
 
 			// Successfully dodge the uppercut.
-			case "weekend-1-picouppercutprep":
+			case "picouppercutprep":
 				playHitHighAnim();
 				cantUppercut = true;
-			case "weekend-1-picouppercut":
+			case "picouppercut":
 				playDodgeAnim();
 
 			// Attempt to punch, Pico dodges or gets hit.
-			case "weekend-1-darnelluppercutprep":
+			case "darnelluppercutprep":
 				playUppercutPrepAnim();
-			case "weekend-1-darnelluppercut":
+			case "darnelluppercut":
 				playUppercutAnim();
 
-			case "weekend-1-idle":
+			case "idle":
 				playIdleAnim();
-			case "weekend-1-fakeout":
+			case "fakeout":
 				playCringeAnim(); // TODO: Which anim?
-			case "weekend-1-taunt":
+			case "taunt":
 				playPissedConditionalAnim();
-			case "weekend-1-tauntforce":
+			case "tauntforce":
 				playPissedAnim();
-			case "weekend-1-reversefakeout":
+			case "reversefakeout":
 				playFakeoutAnim(); // TODO: Which anim?
 		}
 		cantUppercut = false;
@@ -276,9 +278,14 @@ class DarnellBlazinHandler
 		moveToFront();
 	}
 
-	function playUppercutHitAnim():Void
+	function playUppercutHitAnim(isFinal:Bool = false):Void
 	{
 		dad.playAnim('uppercutHit', true);
+
+		if (isFinal) {
+			dad.stunned = true;
+		}
+
 		moveToBack();
 	}
 

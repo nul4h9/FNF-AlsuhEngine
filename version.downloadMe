@@ -1,6 +1,7 @@
-0.1.2h;
-- Fixed rescoring data on Freeplay after reseting score
-- Fixed soundable preferences
-- Fixed practice mode text on Pause Menu
-- FlxAnimate has become mandatory
-- Characters can now load multiple sprite sheets
+0.2;
+- Added Weekend 1 Port (Beta Version)
+- Added Opponent Vocals Support
+- Added Custom Character Vocals Support
+- Added Mouse clicking to change difficulty on Story Menu
+- Added HScript Support on HTML5
+- Updated Flixel libraries

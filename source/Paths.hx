@@ -32,6 +32,7 @@ typedef ModsList =
 	var all:Array<String>;
 }
 
+@:access(openfl.display.BitmapData)
 class Paths
 {
 	public static var SOUND_EXT:Dynamic = #if MP3_ALLOWED 'mp3' #else 'ogg' #end;
@@ -94,6 +95,7 @@ class Paths
 
 					obj.persist = false; // and get rid of the object; make sure the garbage collector actually clears it up
 					obj.destroyOnNoUse = true;
+					destroyGraphic(obj);
 					obj.destroy();
 
 					for (arrkey in currentTrackedFrames.keys())
@@ -124,6 +126,7 @@ class Paths
 			{
 				Assets.cache.removeBitmapData(key);
 				cacheMap.remove(key);
+				destroyGraphic(obj);
 				obj.destroy();
 
 				for (arrkey in currentTrackedFrames.keys())
@@ -149,6 +152,14 @@ class Paths
 
 		localTrackedAssets = []; #if PRELOAD_ALL // flags everything to be cleared out next unused memory clear
 		Assets.cache.clear('songs'); #end
+	}
+
+	inline static function destroyGraphic(graphic:FlxGraphic):Void
+	{
+		if (graphic != null && graphic.bitmap != null && graphic.bitmap.__texture != null) // free some gpu memory
+			graphic.bitmap.__texture.dispose();
+
+		FlxG.bitmap.remove(graphic);
 	}
 
 	public static function formatToSongPath(str:String):String

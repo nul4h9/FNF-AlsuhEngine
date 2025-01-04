@@ -546,7 +546,7 @@ class PlayState extends MusicBeatState
 					if (note == null) continue;
 
 					switch (note.noteType) { // override animations for note types
-						case 'weekend-1-firegun': note.blockHit = true;
+						case 'firegun': note.blockHit = true;
 					}
 
 					if (!noteTypesPhilly.contains(note.noteType)) noteTypesPhilly.push(note.noteType);
@@ -1060,7 +1060,7 @@ class PlayState extends MusicBeatState
 					grpLimoParticles = new FlxTypedGroup<BGSprite>();
 					add(grpLimoParticles);
 
-					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false); //PRECACHE BLOOD
+					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false); // PRECACHE BLOOD
 					particle.alpha = FlxMath.EPSILON;
 					grpLimoParticles.add(particle);
 
@@ -1275,30 +1275,30 @@ class PlayState extends MusicBeatState
 				foregroundSprites = new FlxTypedGroup<BGSprite>();
 				add(foregroundSprites);
 
-				var fgTank0:BGSprite = new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg']);
+				var fgTank0:BGSprite = new BGSprite('tank0', -500, 650, 1.7, 1.5, ['fg tankhead far right']);
 				foregroundSprites.add(fgTank0);
 
 				if (!ClientPrefs.lowQuality)
 				{
-					var fgTank1:BGSprite = new BGSprite('tank1', -300, 750, 2, 0.2, ['fg']);
+					var fgTank1:BGSprite = new BGSprite('tank1', -300, 750, 2, 0.2, ['fg tankhead']);
 					foregroundSprites.add(fgTank1);
 				}
 
-				var fgTank2:BGSprite = new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']); // just called 'foreground' just cuz small inconsistency no bbiggei
+				var fgTank2:BGSprite = new BGSprite('tank2', 450, 940, 1.5, 1.5, ['foreground man']); // just called 'foreground' just cuz small inconsistency no bbiggei
 				foregroundSprites.add(fgTank2);
 
 				if (!ClientPrefs.lowQuality)
 				{
-					var fgTank4:BGSprite = new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']);
+					var fgTank4:BGSprite = new BGSprite('tank4', 1300, 900, 1.5, 1.5, ['fg tankman bobbin 3']);
 					foregroundSprites.add(fgTank4);
 				}
 
-				var fgTank5:BGSprite = new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']);
+				var fgTank5:BGSprite = new BGSprite('tank5', 1620, 700, 1.5, 1.5, ['fg tankhead far right']);
 				foregroundSprites.add(fgTank5);
 
 				if (!ClientPrefs.lowQuality)
 				{
-					var fgTank3:BGSprite = new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']);
+					var fgTank3:BGSprite = new BGSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg tankhead']);
 					foregroundSprites.add(fgTank3);
 				}
 			}
@@ -1552,9 +1552,9 @@ class PlayState extends MusicBeatState
 		{
 			switch (noteType)
 			{
-				case 'weekend-1-kickcan': createCan();
-				case 'weekend-1-cockgun': precacheCasing();
-				case 'weekend-1-firegun':
+				case 'kickcan': createCan();
+				case 'cockgun': precacheCasing();
+				case 'firegun':
 				{
 					bonkSnd = new FlxSound();
 					FlxG.sound.list.add(bonkSnd);
@@ -3280,14 +3280,14 @@ class PlayState extends MusicBeatState
 			{
 				if (!ClientPrefs.lowQuality)
 				{
-					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch instance'], false);
+					bgGhouls = new BGSprite('weeb/bgGhouls', -100, 190, 0.9, 0.9, ['BG freaks glitch'], false);
 					bgGhouls.setGraphicSize(Std.int(bgGhouls.width * daPixelZoom));
 					bgGhouls.updateHitbox();
 					bgGhouls.visible = false;
 					bgGhouls.antialiasing = false;
 					bgGhouls.animation.finishCallback = function(name:String):Void
 					{
-						if (name == 'BG freaks glitch instance') {
+						if (name == 'BG freaks glitch') {
 							bgGhouls.visible = false;
 						}
 					}
@@ -3628,15 +3628,15 @@ class PlayState extends MusicBeatState
 										{
 											if (i == 0) FlxG.sound.play(Paths.getSound('dancerdeath'), 0.5) #if FLX_PITCH .pitch = playbackRate #end;
 		
-											var diffStr:String = i == 3 ? ' 2 ' : ' ';
+											var diffStr:String = i == 3 ? ' 2' : '';
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 160, dancers[i].y + 200, 0.4, 0.4, ['hench arm spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 160, dancers[i].y + 200, 0.4, 0.4, ['hench arm spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x, dancers[i].y + 50, 0.4, 0.4, ['hench head spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x, dancers[i].y + 50, 0.4, 0.4, ['hench head spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 		
 											var particle:BGSprite = new BGSprite('gore/stupidBlood', dancers[i].x - 110, dancers[i].y + 20, 0.4, 0.4, ['blood'], false);
@@ -5505,7 +5505,7 @@ class PlayState extends MusicBeatState
 			{
 				switch (daNote.noteType)
 				{
-					case 'weekend-1-firegun':
+					case 'firegun':
 					{
 						boyfriend.playAnim('shootMISS', true);
 						boyfriend.specialAnim = true;
@@ -5731,7 +5731,7 @@ class PlayState extends MusicBeatState
 
 				switch (note.noteType)
 				{
-					case 'weekend-1-lightcan':
+					case 'lightcan':
 					{
 						dad.holdTimer = 0;
 						dad.playAnim('lightCan', true);
@@ -5744,7 +5744,7 @@ class PlayState extends MusicBeatState
 						cameraSpeed = 2;
 						camFollow.x -= 100;
 					}
-					case 'weekend-1-kickcan':
+					case 'kickcan':
 					{
 						dad.holdTimer = 0;
 						dad.playAnim('kickCan', true);
@@ -5762,7 +5762,7 @@ class PlayState extends MusicBeatState
 							cameraSpeed = 1;
 						});
 					}
-					case 'weekend-1-kneecan':
+					case 'kneecan':
 					{
 						dad.holdTimer = 0;
 						dad.playAnim('kneeCan', true);
@@ -5887,7 +5887,7 @@ class PlayState extends MusicBeatState
 						spawnNoteSplashOnNote(note);
 					}
 				}
-				case 'weekend-1-cockgun': // HE'S PULLING HIS COCK OUT
+				case 'cockgun': // HE'S PULLING HIS COCK OUT
 				{
 					boyfriend.holdTimer = 0;
 					boyfriend.playAnim('cock', true);
@@ -5912,13 +5912,13 @@ class PlayState extends MusicBeatState
 
 					notes.forEachAlive(function(note:Note):Void
 					{
-						if (note.noteType == 'weekend-1-firegun')
+						if (note.noteType == 'firegun')
 							note.blockHit = false;
 					});
 
 					showPicoFade();
 				}
-				case 'weekend-1-firegun':
+				case 'firegun':
 				{
 					boyfriend.holdTimer = 0;
 					boyfriend.playAnim('shoot', true);

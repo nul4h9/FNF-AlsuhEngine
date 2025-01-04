@@ -125,20 +125,17 @@ class CoolUtil
 	{
 		final countByColor:Map<Int, Int> = [];
 
-		for (x in 0...sprite.frameWidth)
+		for (col in 0...sprite.frameWidth)
 		{
-			for (y in 0...sprite.frameHeight)
+			for (row in 0...sprite.frameHeight)
 			{
-				var colorOfThisPixel:Int = sprite.pixels.getPixel32(x, y);
+				var colorOfThisPixel:FlxColor = sprite.pixels.getPixel32(col, row);
 
-				if (colorOfThisPixel != 0)
+				if (colorOfThisPixel.alphaFloat > 0.05)
 				{
-					if (countByColor.exists(colorOfThisPixel)) {
-						countByColor.set(colorOfThisPixel, countByColor.get(colorOfThisPixel) + 1);
-					}
-					else if (countByColor.get(colorOfThisPixel) != 13520687 - (2*13520687)) {
-						countByColor.set(colorOfThisPixel, 1);
-					}
+					colorOfThisPixel = FlxColor.fromRGB(colorOfThisPixel.red, colorOfThisPixel.green, colorOfThisPixel.blue, 255);
+					var count:Int = countByColor.exists(colorOfThisPixel) ? countByColor.get(colorOfThisPixel) : 0;
+					countByColor.set(colorOfThisPixel, count + 1);
 				}
 			}
 		}
@@ -148,11 +145,11 @@ class CoolUtil
 
 		countByColor.set(FlxColor.BLACK, 0);
 
-		for (key in countByColor.keys())
+		for (key => count in countByColor)
 		{
-			if (countByColor.get(key) >= maxCount)
+			if (count >= maxCount)
 			{
-				maxCount = countByColor.get(key);
+				maxCount = count;
 				maxKey = key;
 			}
 		}

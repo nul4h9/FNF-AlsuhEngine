@@ -23,22 +23,22 @@
 		{
 			"name": "flixel",
 			"type": "haxelib",
-			"version": "5.5.0"
+			"version": "5.7.2"
 		},
 		{
 			"name": "flixel-ui",
 			"type": "haxelib",
-			"version": "2.6.0"
+			"version": "2.6.1"
 		},
 		{
 			"name": "flixel-addons",
 			"type": "haxelib",
-			"version": "3.2.1"
+			"version": "3.2.3"
 		},
 		{
 			"name": "hxdiscord_rpc",
 			"type": "haxelib",
-			"version": "1.1.1"
+			"version": "1.2.4"
 		},
 		{
 			"name": "hxCodec",

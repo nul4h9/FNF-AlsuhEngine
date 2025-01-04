@@ -493,18 +493,26 @@ class Note extends FlxSprite
 
 		var ourCol:String = colArray[noteData];
 		var blyad:String = ourCol + ' instance 1';
+		var isVanilla:Bool = true;
 
-		if (frames.getByName(blyad + '0000') == null) blyad = ourCol + ' instance';
-		if (frames.getByName(blyad + '0000') == null) blyad = ourCol + '0';
+		if (!frames.exists(blyad + '0000'))
+		{
+			isVanilla = false;
+			blyad = ourCol + '0';
+		}
 
 		animation.addByPrefix(ourCol + 'Scroll', blyad);
 
 		if (isSustainNote)
 		{
-			attemptToAddAnimationByPrefix('purpleholdend', 'pruple end hold'); // this fixes some retarded typo from the original note .FLA
+			var shitInPants:String = ' instance 1';
 
-			animation.addByPrefix(ourCol + 'holdend', ourCol + ' hold end');
-			animation.addByPrefix(ourCol + 'hold', ourCol + ' hold piece');
+			if (frames.exists('pruple end hold0000')) {
+				attemptToAddAnimationByPrefix('purpleholdend', 'pruple end hold'); // this fixes some retarded typo from the original note .FLA
+			}
+
+			animation.addByPrefix(ourCol + 'holdend', ourCol + ' hold end' + (isVanilla ? shitInPants : ''));
+			animation.addByPrefix(ourCol + 'hold', ourCol + ' hold piece' + (isVanilla ? shitInPants : ''));
 		}
 
 		setGraphicSize(Std.int(width * 0.7));

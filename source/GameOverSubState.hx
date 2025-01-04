@@ -212,7 +212,7 @@ class GameOverSubState extends MusicBeatSubState
 			}
 		}
 
-		camDeath.follow(camFollow, LOCKON, 0.1);
+		camDeath.follow(camFollow, LOCKON, 0.6);
 		randomGameover = FlxG.random.int(1, 25);
 
 		PlayState.instance.callOnScripts('onGameOverStart', []);
@@ -331,7 +331,6 @@ class GameOverSubState extends MusicBeatSubState
 			if (boyfriend.hasAnimation('deathConfirm')) {
 				boyfriend.playAnim('deathConfirm', true);
 			}
-
 			else if (boyfriend.hasAnimation('deathLoop')) {
 				boyfriend.playAnim('deathLoop', true);
 			}

@@ -475,7 +475,8 @@ class Character extends Sprite
 		return false;
 	}
 
-	public var isAnimateAtlas:Bool = false;
+	@:allow(editors.CharacterEditorState)
+	public var isAnimateAtlas(default, null):Bool = false;
 	public var atlas:FlxAnimate;
 
 	public override function draw():Void
