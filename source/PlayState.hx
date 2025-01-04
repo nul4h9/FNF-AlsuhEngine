@@ -3628,7 +3628,7 @@ class PlayState extends MusicBeatState
 										{
 											if (i == 0) FlxG.sound.play(Paths.getSound('dancerdeath'), 0.5) #if FLX_PITCH .pitch = playbackRate #end;
 		
-											var diffStr:String = i == 3 ? ' 2 ' : ' ';
+											var diffStr:String = i == 3 ? ' 2' : '';
 
 											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr], false);
 											grpLimoParticles.add(particle);
