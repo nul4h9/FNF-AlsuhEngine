@@ -8,6 +8,17 @@
 			],
 			"loop": false,
 			"fps": 24,
+			"anim": "idle",
+			"indices": [],
+			"name": "Pico shoot 1"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 24,
 			"anim": "shoot1",
 			"indices": [],
 			"name": "Pico shoot 1"
