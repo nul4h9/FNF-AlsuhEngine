@@ -4255,7 +4255,7 @@ class PlayState extends MusicBeatState
 
 				if (value != 0)
 				{
-					if (dad.curCharacter.startsWith('gf')) // Tutorial GF is actually Dad! The GF is an imposter!! ding ding ding ding ding ding ding, dindinding, end my suffering
+					if (dad.curCharacter.startsWith('gf'))
 					{
 						dad.playAnim('cheer', true);
 						dad.specialAnim = true;
@@ -4266,6 +4266,12 @@ class PlayState extends MusicBeatState
 						gf.playAnim('cheer', true);
 						gf.specialAnim = true;
 						gf.heyTimer = flValue2;
+					}
+
+					if (SONG.stage == 'mall')
+					{
+						bottomBoppers.playAnim('hey', true);
+						bottomBoppers.heyTimer = flValue2;
 					}
 				}
 
