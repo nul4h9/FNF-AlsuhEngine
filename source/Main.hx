@@ -73,6 +73,10 @@ class Main extends Sprite
 
 	public static function main():Void
 	{
+		#if DARK_MODE_WINDOW
+		debug.DarkMode.setDarkMode(Lib.current.stage.application.window.title, true);
+		#end
+
 		Lib.current.addChild(new Main());
 	}
 

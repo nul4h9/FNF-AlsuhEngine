@@ -23,6 +23,7 @@
 	<define name="ALSUH_WATERMARKS" /> <!-- DELETE THIS TO REMOVE ALL WATERMARKS ON ENGINE -->
 	<define name="CHECK_FOR_UPDATES" if="officialBuild desktop" />
 	<define name="CRASH_HANDLER" if="desktop release" />
+	<define name="DARK_MODE_WINDOW" if="windows" />
 
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="DISCORD_ALLOWED" if="desktop cpp" />
