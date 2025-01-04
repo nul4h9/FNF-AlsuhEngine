@@ -6054,6 +6054,12 @@ class PlayState extends MusicBeatState
 
 	override public function destroy():Void
 	{
+		if (CustomSubState.instance != null)
+		{
+			closeSubState();
+			resetSubState();
+		}
+
 		#if LUA_ALLOWED
 		var luaScript:FunkinLua = null;
 

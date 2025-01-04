@@ -47,7 +47,6 @@ class CustomSubState extends MusicBeatSubState
 		if (instance != null)
 		{
 			PlayState.instance.closeSubState();
-			instance = null;
 			return true;
 		}
 
@@ -114,6 +113,8 @@ class CustomSubState extends MusicBeatSubState
 		PlayState.instance.setOnHScript('customSubstate', null);
 		PlayState.instance.setOnHScript('customSubstateName', name);
 		#end
+
+		instance = null;
 
 		super.destroy();
 	}

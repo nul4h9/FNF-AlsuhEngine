@@ -461,7 +461,7 @@ class TitleState extends MusicBeatState
 				case 2:
 				{
 					#if ALSUH_WATERMARKS if (ClientPrefs.watermarks) createCoolText(['Alsuh Engine by']); else #end {
-						createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+						createCoolText(['The', 'Funkin Crew Inc']);
 					}
 				}
 				case 4:
