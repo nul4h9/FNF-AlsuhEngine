@@ -1060,7 +1060,7 @@ class PlayState extends MusicBeatState
 					grpLimoParticles = new FlxTypedGroup<BGSprite>();
 					add(grpLimoParticles);
 
-					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false); //PRECACHE BLOOD
+					var particle:BGSprite = new BGSprite('gore/stupidBlood', -400, -400, 0.4, 0.4, ['blood'], false); // PRECACHE BLOOD
 					particle.alpha = FlxMath.EPSILON;
 					grpLimoParticles.add(particle);
 
@@ -3630,13 +3630,13 @@ class PlayState extends MusicBeatState
 		
 											var diffStr:String = i == 3 ? ' 2 ' : ' ';
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 200, dancers[i].y, 0.4, 0.4, ['hench leg spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 160, dancers[i].y + 200, 0.4, 0.4, ['hench arm spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x + 160, dancers[i].y + 200, 0.4, 0.4, ['hench arm spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 
-											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x, dancers[i].y + 50, 0.4, 0.4, ['hench head spin' + diffStr + 'PINK'], false);
+											var particle:BGSprite = new BGSprite('gore/noooooo', dancers[i].x, dancers[i].y + 50, 0.4, 0.4, ['hench head spin' + diffStr], false);
 											grpLimoParticles.add(particle);
 		
 											var particle:BGSprite = new BGSprite('gore/stupidBlood', dancers[i].x - 110, dancers[i].y + 20, 0.4, 0.4, ['blood'], false);
