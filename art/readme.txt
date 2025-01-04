@@ -65,10 +65,10 @@ https://kawaisprite.bandcamp.com/album/friday-night-funkin-ost-vol-1
 
 Friday Night Funkin' is made by ninjamuffin99 (programmer), PhantomArcade (animator), kawaisprite (musician), and evilsk8r (artist)
 
-https://twitter.com/ninja_muffin99
-https://twitter.com/phantomarcade3k
-https://twitter.com/kawaisprite
-https://twitter.com/evilsk8r
+https://x.com/ninja_muffin99
+https://x.com/phantomarcade3k
+https://x.com/kawaisprite
+https://x.com/evilsk8r
 
 Pico is created by Tom Fulp
 Skid and Pump are created by SrPelo
