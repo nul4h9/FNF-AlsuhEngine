@@ -5859,7 +5859,7 @@ class PlayState extends MusicBeatState
 				{
 					default:
 					{
-						if (!note.noteSplashData.disabled && note.noteSplashData.quick) {
+						if (!note.noteSplashData.disabled) {
 							spawnNoteSplashOnNote(note);
 						}
 					}

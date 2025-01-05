@@ -814,7 +814,7 @@ class EditorPlayState extends MusicBeatSubState
 			{
 				default:
 				{
-					if (!note.noteSplashData.disabled && note.noteSplashData.quick) {
+					if (!note.noteSplashData.disabled) {
 						spawnNoteSplashOnNote(note);
 					}
 				}
