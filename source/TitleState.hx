@@ -467,7 +467,7 @@ class TitleState extends MusicBeatState
 				case 4:
 				{
 					#if ALSUH_WATERMARKS if (ClientPrefs.watermarks) addMoreText('null the great'); else #end {
-						addMoreText('present');
+						addMoreText('presents');
 					}
 				}
 				case 5: deleteCoolText();

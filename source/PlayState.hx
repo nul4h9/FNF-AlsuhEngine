@@ -4140,14 +4140,14 @@ class PlayState extends MusicBeatState
 					gameOverTimer = new FlxTimer().start(GameOverSubState.deathDelay, function(_):Void
 					{
 						stopMusic();
-						openSubState(new GameOverSubState());
+						openSubState(new GameOverSubState(boyfriend));
 						gameOverTimer = null;
 					});
 				}
 				else
 				{
 					stopMusic();
-					openSubState(new GameOverSubState());
+					openSubState(new GameOverSubState(boyfriend));
 				}
 
 				makeOperationsActive();

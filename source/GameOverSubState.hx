@@ -50,6 +50,14 @@ class GameOverSubState extends MusicBeatSubState
 	public static var endSoundName:String = 'gameOverEnd';
 	public static var deathDelay:Float = 0;
 
+	public function new(?playStateBoyfriend:Character = null):Void
+	{
+		if (playStateBoyfriend != null && playStateBoyfriend.curCharacter == characterName) // Avoids spawning a second boyfriend cuz animate atlas is laggy
+			this.boyfriend = playStateBoyfriend;
+
+		super();
+	}
+
 	public static function resetVariables():Void
 	{
 		danceDelay = ClientPrefs.danceOffset;
@@ -95,9 +103,13 @@ class GameOverSubState extends MusicBeatSubState
 		camDeath.zoom = FlxG.camera.zoom;
 		FlxG.cameras.add(camDeath, false);
 
-		boyfriend = new Character(PlayState.instance.boyfriend.getScreenPosition().x, PlayState.instance.boyfriend.getScreenPosition().y, characterName, true);
-		boyfriend.x += boyfriend.positionArray[0] - PlayState.instance.boyfriend.positionArray[0];
-		boyfriend.y += boyfriend.positionArray[1] - PlayState.instance.boyfriend.positionArray[1];
+		if (boyfriend == null)
+		{
+			boyfriend = new Character(PlayState.instance.boyfriend.getScreenPosition().x, PlayState.instance.boyfriend.getScreenPosition().y, characterName, true);
+			boyfriend.x += boyfriend.positionArray[0] - PlayState.instance.boyfriend.positionArray[0];
+			boyfriend.y += boyfriend.positionArray[1] - PlayState.instance.boyfriend.positionArray[1];
+		}
+
 		boyfriend.cameras = [camDeath];
 		add(boyfriend);
 
@@ -342,10 +354,8 @@ class GameOverSubState extends MusicBeatSubState
 				overlay.offset.set(overlayConfirmOffsets.x, overlayConfirmOffsets.y);
 			}
 
-			var lastVolume:Float = FlxG.sound.music.volume;
 			PlayState.instance.stopMusic();
-
-			FlxG.sound.play(Paths.getMusic(endSoundName), lastVolume);
+			FlxG.sound.play(Paths.getMusic(endSoundName));
 
 			new FlxTimer().start(startConfirmFadeOut, function(tmr:FlxTimer):Void
 			{
