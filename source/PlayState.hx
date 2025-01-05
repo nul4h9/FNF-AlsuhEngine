@@ -1894,17 +1894,23 @@ class PlayState extends MusicBeatState
 	function startCharacterScripts(name:String):Void
 	{
 		#if LUA_ALLOWED // lua
-		var luaFile:String = 'characters/' + name;
-		var replacePath:String = Paths.getLua(luaFile);
+		var doPush:Bool = false;
+		var luaPath:String = Paths.getLua('characters/' + name);
 
-		if (Paths.fileExists(replacePath, TEXT))
+		if (Paths.fileExists(luaPath, TEXT)) doPush = true;
+
+		if (doPush)
 		{
 			for (script in luaArray)
 			{
-				if (script.scriptName != luaFile + '.lua') {
-					new FunkinLua(replacePath);
+				if (script.scriptName == luaPath)
+				{
+					doPush = false;
+					break;
 				}
 			}
+
+			if (doPush) new FunkinLua(luaPath);
 		}
 		#end
 
