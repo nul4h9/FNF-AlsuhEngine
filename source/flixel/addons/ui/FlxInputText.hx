@@ -380,72 +380,68 @@ class FlxInputText extends FlxText
 						text = text.substring(0, caretIndex) + text.substring(caretIndex + 1);
 						onChange(DELETE_ACTION);
 					}
-				case ENTER: onChange(ENTER_ACTION);
-				case V:
-				{
-					// Reapply focus  when tabbing back into the window and selecting the field
-					#if (js && html5)
-					FlxG.stage.window.textInputEnabled = true;
-					#else
-					#if (macos)
-					if (e.commandKey)
-					#else
-					if (e.ctrlKey)
-					#end
-					{
-						var newText:String = filter(Clipboard.text);
-
-						if (newText.length > 0 && (maxLength == 0 || (text.length + newText.length) < maxLength))
-						{
-							text = insertSubstring(text, newText, caretIndex);
-							caretIndex += newText.length;
-							onChange(INPUT_ACTION);
-							onChange(PASTE_ACTION);
-						}
-					}
-					return;
-					#end
-				}
-				case C:
-				{
-					#if (js && html5)
-					FlxG.stage.window.textInputEnabled = true;
-					#else
-					if (#if (macos) e.commandKey #else e.ctrlKey #end)
-					{
-						Clipboard.text = text;
-
-						onChange(COPY_ACTION);
-					}
-					#end
-					return;
-				}
-				case X:
-				{
-					#if (js && html5)
-					FlxG.stage.window.textInputEnabled = true;
-					#else
-					//// Crtl/Cmd + X to cut the text from the input to the clipboard
-					// Again, this copies the entire input text because there is no caret selection.
-					#if (macos)
-					if (e.commandKey)
-					#else
-					if (e.ctrlKey)
-					#end
-					{
-						Clipboard.text = text;
-						text = '';
-						caretIndex = 0;
-
-						onChange(INPUT_ACTION);
-						onChange(CUT_ACTION);
-
-						// Same as before, but prevents typing out a x
-						return;
-					}
-					#end
-				}
+				case ENTER:
+					onChange(ENTER_ACTION);
 				default:
+					switch (key)
+					{
+						case C:
+							// Reapply focus  when tabbing back into the window and selecting the field
+							#if (js && html5)
+							FlxG.stage.window.textInputEnabled = true;
+							#else
+							if (#if (macos) e.commandKey #else e.ctrlKey #end)
+							{
+								Clipboard.text = text;
+		
+								onChange(COPY_ACTION);
+								return;
+							}
+							#end
+						case V:
+							// Reapply focus  when tabbing back into the window and selecting the field
+							#if (js && html5)
+							FlxG.stage.window.textInputEnabled = true;
+							#else
+							if (#if (macos) e.commandKey #else e.ctrlKey #end)
+							{
+								var newText:String = filter(Clipboard.text);
+
+								if (newText.length > 0 && (maxLength == 0 || (text.length + newText.length) < maxLength))
+								{
+									text = insertSubstring(text, newText, caretIndex);
+									caretIndex += newText.length;
+									onChange(INPUT_ACTION);
+									onChange(PASTE_ACTION);
+								}
+
+								// Same as before, but prevents typing out a x
+								return;
+							}
+							#end
+						case X:
+							// Reapply focus  when tabbing back into the window and selecting the field
+							#if (js && html5)
+							FlxG.stage.window.textInputEnabled = true;
+							#else
+							//// Crtl/Cmd + X to cut the text from the input to the clipboard
+							// Again, this copies the entire input text because there is no caret selection.
+							if (#if (macos) e.commandKey #else e.ctrlKey #end)
+							{
+								Clipboard.text = text;
+								text = '';
+								caretIndex = 0;
+				
+								onChange(INPUT_ACTION);
+								onChange(CUT_ACTION);
+				
+								// Same as before, but prevents typing out a x
+								return;
+							}
+							#end
+						default:
+					}
+
 					// Actually add some text
 					if (e.charCode == 0) // non-printable characters crash String.fromCharCode
 					{

@@ -1,6 +1,2 @@
-0.2.2;
-- Fixed bottom boppers "Hey!" animation on "mall" stage
-- Fixed Note and Splash Skins Settings on HTML5
-- Fixed reseting setting 'Pause Screen Song'
-- Fixed FlxUIDropDownMenu
-- Fixed Character Lua Scripts
+0.2.2h;
+- Fixed typing C, X and V keys on editors
