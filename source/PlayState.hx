@@ -4976,8 +4976,8 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		timeBar.alpha = 0;
-		timeTxt.alpha = 0;
+		timeBar.alpha = FlxMath.EPSILON;
+		timeTxt.alpha = FlxMath.EPSILON;
 
 		canPause = false;
 		endingSong = true;
