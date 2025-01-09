@@ -1,2 +1,5 @@
-0.2.2h;
+0.2.3;
 - Fixed typing C, X and V keys on editors
+- Fixed text on starting dialogue
+- Updated flixel to 5.8.0 version
+- Dialogue characters can now load multiple sprite sheets

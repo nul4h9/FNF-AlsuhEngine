@@ -30,9 +30,8 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 	public static var DEFAULT_TEXT_Y:Float = 460;
 	public static var LONG_TEXT_ADD:Float = 24;
 
+	var daText:TypedAlphabet;
 	var scrollSpeed:Float = 4000;
-
-	var dialogue:TypedAlphabet;
 	var dialogueList:DialogueFile = null;
 
 	public var finishThing:Void->Void;
@@ -94,12 +93,12 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 		box.animation.addByPrefix('center-angry', 'AHH Speech Bubble middle', 24);
 		box.animation.addByPrefix('center-angryOpen', 'speech bubble Middle loud open', 24, false);
 		box.playAnim('normal', true);
-		box.visible = false;
+		box.alpha = FlxMath.EPSILON;
 		box.setGraphicSize(Std.int(box.width * 0.9));
 		box.updateHitbox();
 		add(box);
 
-		daText = new TypedAlphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y, '');
+		daText = new TypedAlphabet(DEFAULT_TEXT_X, DEFAULT_TEXT_Y);
 		daText.setScale(0.7);
 		add(daText);
 
@@ -173,7 +172,6 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 		}
 	}
 
-	var daText:TypedAlphabet = null;
 	var ignoreThisFrame:Bool = true; //First frame is reserved for loading dialogue images
 
 	public var closeSound:String = 'dialogueClose';
@@ -184,7 +182,9 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 		if (ignoreThisFrame)
 		{
 			ignoreThisFrame = false;
-			return super.update(elapsed);
+
+			super.update(elapsed);
+			return;
 		}
 
 		if (!dialogueEnded)
@@ -230,7 +230,7 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 					}
 
 					updateBoxOffsets(box);
-					FlxG.sound.music.fadeOut(1, 0);
+					FlxG.sound.music.fadeOut(1, 0, (_) -> FlxG.sound.music.stop());
 				}
 				else {
 					startNextDialog();
@@ -396,7 +396,7 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 			}
 		}
 
-		return super.update(elapsed);
+		super.update(elapsed);
 	}
 
 	var lastCharacter:Int = -1;
@@ -426,7 +426,7 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 		}
 
 		var character:Int = 0;
-		box.visible = true;
+		box.alpha = 1;
 
 		for (i in 0...arrayCharacters.length)
 		{
@@ -458,12 +458,17 @@ class DialogueBoxPsych extends FlxSpriteGroup // TO DO: Clean code? Maybe? idk
 		lastCharacter = character;
 		lastBoxType = boxType;
 
-		daText.text = curDialogue.text;
 		daText.delay = curDialogue.speed / PlayState.instance.playbackRate;
-		daText.sound = curDialogue.sound;
 
-		if (daText.sound == null || daText.sound.trim() == '') daText.sound = 'dialogue';
-		
+		if (curDialogue.sound != null && curDialogue.sound.length > 0 && curDialogue.sound.trim() != '') {
+			daText.sound = curDialogue.sound;
+		}
+		else {
+			daText.sound = 'dialogue';
+		}
+
+		daText.text = curDialogue.text;
+
 		daText.y = DEFAULT_TEXT_Y;
 		if (daText.rows > 2) daText.y -= LONG_TEXT_ADD;
 

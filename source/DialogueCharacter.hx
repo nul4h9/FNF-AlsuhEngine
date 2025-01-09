@@ -52,7 +52,9 @@ class DialogueCharacter extends FlxSprite
 
 		reloadCharacterJson(character);
 
-		frames = Paths.getSparrowAtlas('dialogue/' + jsonFile.image);
+		var split:Array<String> = [for (i in jsonFile.image.trim().split(',')) 'dialogue/' + i.trim()];
+		frames = Paths.getMultiAtlas(split);
+
 		reloadAnimations();
 
 		antialiasing = ClientPrefs.globalAntialiasing;

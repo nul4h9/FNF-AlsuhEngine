@@ -479,7 +479,8 @@ class DialogueCharacterEditorState extends MusicBeatState
 
 		for (char in charsArray)
 		{
-			char.frames = Paths.getSparrowAtlas('dialogue/' + character.jsonFile.image);
+			var split:Array<String> = [for (i in character.jsonFile.image.trim().split(',')) 'dialogue/' + i.trim()];
+			char.frames = Paths.getMultiAtlas(split);
 			char.jsonFile = character.jsonFile;
 
 			char.reloadAnimations();

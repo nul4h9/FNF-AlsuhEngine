@@ -224,7 +224,7 @@ class DialogueBox extends FlxSpriteGroup
 						switch (PlayState.SONG.songID)
 						{
 							case 'senpai' | 'thorns':
-								FlxG.sound.music.fadeOut(2.2, 0);
+								FlxG.sound.music.fadeOut(2.2, 0, (_) -> FlxG.sound.music.stop());
 						}
 
 						new FlxTimer().start(0.2 / PlayState.instance.playbackRate, function(tmr:FlxTimer):Void
