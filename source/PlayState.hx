@@ -217,7 +217,6 @@ class PlayState extends MusicBeatState
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var camCustom:FlxCamera;
-	public var camNoteCombo:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
@@ -293,10 +292,6 @@ class PlayState extends MusicBeatState
 		camCustom = new FlxCamera();
 		camCustom.bgColor.alpha = 0;
 		FlxG.cameras.add(camCustom, false);
-
-		camNoteCombo = new FlxCamera();
-		camNoteCombo.bgColor.alpha = 0;
-		FlxG.cameras.add(camNoteCombo, false);
 
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -1636,9 +1631,6 @@ class PlayState extends MusicBeatState
 
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
-
-	var noteCombo:Sprite;
-	var noteComboNumbers:FlxTypedGroup<Sprite>;
 
 	private function createHud():Void
 	{
@@ -3834,8 +3826,6 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, Math.exp(-elapsed * 3.125 * camZoomingDecay * playbackRate));
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, Math.exp(-elapsed * 3.125 * camZoomingDecay * playbackRate));
 		}
-
-		camNoteCombo.zoom = camHUD.zoom - 0.25;
 
 		if (!ClientPrefs.noReset && controls.RESET_P && canReset && !inCutscene && startedCountdown && !endingSong) // RESET = Quick Game Over Screen
 		{
@@ -7787,7 +7777,6 @@ class PlayState extends MusicBeatState
 			case 'camhud' | 'hud': return instance.camHUD;
 			case 'camother' | 'other': return instance.camOther;
 			case 'camcustom' | 'custom': return instance.camCustom;
-			case 'camnotecombo' | 'notecombo' | 'camcombo' | 'combo': return instance.camNoteCombo;
 		}
 
 		if (instance.isDead) {
