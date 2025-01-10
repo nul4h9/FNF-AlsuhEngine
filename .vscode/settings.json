@@ -56,20 +56,6 @@
 			"args": [
 				"-release"
 			]
-		},
-		{
-			"label": "Build Hashlink (Debug)",
-			"target": "hl",
-			"args": [
-				"-debug"
-			]
-		},
-		{
-			"label": "Build Hashlink (Release)",
-			"target": "hl",
-			"args": [
-				"-release"
-			]
 		}
 	]
 }

@@ -1,24 +1,16 @@
 name: Windows
-on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ main, experimental ]
-  pull_request:
-    branches: [ main, experimental ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
   Build:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.2
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.3.4
+          haxe-version: 4.3.6
       - name: Install Haxe Libraries
         run: |
           haxelib setup C:/haxelib
@@ -30,7 +22,7 @@ jobs:
       - name: Compile
         run: haxelib run openfl build windows --app-version="4.0.0-${{ github.run_id}}" -D officialBuild
       - name: Publish Artifact
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: Windows Build
           path: export/release/windows/bin

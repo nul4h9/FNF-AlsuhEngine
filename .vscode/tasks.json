@@ -60,26 +60,6 @@
 				"kind": "build",
 				"isDefault": true
 			}
-		},
-		{
-			"label": "Build Hashlink (Debug)",
-			"type": "lime",
-			"targetConfiguration": "Build Hashlink (Debug)",
-			"command": "build",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		},
-		{
-			"label": "Build Hashlink (Release)",
-			"type": "lime",
-			"targetConfiguration": "Build Hashlink (Release)",
-			"command": "build",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
 		}
 	]
 }

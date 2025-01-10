@@ -19,7 +19,6 @@ after it finishes, simply type `haxelib run hmm install` in order to install all
 - Linux (linux)
 - MacOS (macos, mac)
 - HTML5 (html5)
-- Hashlink (hashlink, hl)
 
 To build the game, run `haxelib run openfl test <target>`.
 

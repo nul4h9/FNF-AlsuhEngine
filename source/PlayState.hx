@@ -1760,7 +1760,14 @@ class PlayState extends MusicBeatState
 	function set_cpuControlled(value:Bool):Bool
 	{
 		cpuControlled = value;
-		if (botplayTxt != null) botplayTxt.visible = cpuControlled && !addScoreOnPractice;
+
+		if (botplayTxt != null)
+		{
+			botplayTxt.visible = cpuControlled && !addScoreOnPractice;
+			botplayTxt.alpha = 1;
+			botplaySine = 0;
+		}
+
 		return value;
 	}
 
