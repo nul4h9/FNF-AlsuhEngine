@@ -13,6 +13,7 @@
 	],
 	"song": "",
 	"maxScore": 50,
+	"maxDecimals": 0,
 	"hidden": false,
 	"misses": -1
 }

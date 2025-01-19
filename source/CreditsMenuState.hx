@@ -140,7 +140,7 @@ class CreditsMenuState extends MusicBeatState
 
 				creditText.hasIcon = true;
 
-				Paths.currentModDirectory = '';
+				Paths.loadTopMod();
 				if (curSelected < 0) curSelected = i;
 			}
 			else {

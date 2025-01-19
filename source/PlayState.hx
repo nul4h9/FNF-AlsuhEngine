@@ -141,7 +141,7 @@ class PlayState extends MusicBeatState
 	var vocalsFinished:Bool = false;
 	var opponentVocalsFinished:Bool = false;
 
-	public var middleScroll:Bool = false;
+	public var middleScroll(default, set):Bool = false;
 	public var opponentNotesEnabled:Bool = false;
 
 	public var dad:Character;
@@ -495,13 +495,13 @@ class PlayState extends MusicBeatState
 		for (award in Achievements.achievements)
 		{
 			#if LUA_ALLOWED
-			startLuasNamed('achivements/' + award.save_tag);
-			startLuasNamed('achivements/' + award.lua_code);
+			startLuasNamed('achievements/' + award.save_tag);
+			startLuasNamed('achievements/' + award.lua_code);
 			#end
 
 			#if HSCRIPT_ALLOWED
-			startHScriptsNamed('achivements/' + award.save_tag);
-			startHScriptsNamed('achivements/' + award.hx_code);
+			startHScriptsNamed('achievements/' + award.save_tag);
+			startHScriptsNamed('achievements/' + award.hx_code);
 			#end
 		}
 		#end
@@ -1818,6 +1818,12 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
+	function set_middleScroll(value:Bool):Bool
+	{
+		setOnLuas('middlescroll', value);
+		return middleScroll = value;
+	}
+
 	public function addTextToDebug(text:String, color:FlxColor):Void
 	{
 		#if MODS_ALLOWED
@@ -1946,7 +1952,7 @@ class PlayState extends MusicBeatState
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false):Void
 	{
-		if (gfCheck && char.curCharacter.startsWith('gf')) //IF DAD IS GIRLFRIEND, HE GOES TO HER POSITION
+		if (gfCheck && char.curCharacter.startsWith('gf')) // If Dad is Girlfriend, he goes to her position
 		{
 			char.setPosition(GF_X, GF_Y);
 			char.danceEveryNumBeats = ClientPrefs.danceOffset;
@@ -1969,8 +1975,7 @@ class PlayState extends MusicBeatState
 		#if VIDEOS_ALLOWED
 		if (Paths.fileExists(Paths.getVideo(name), BINARY))
 		{
-			var video:FlxVideo = new FlxVideo(name);
-			video.finishCallback = function():Void
+			var video:FlxVideo = new FlxVideo(name, function(video:FlxVideo):Void
 			{
 				remove(video, true);
 				video.destroy();
@@ -1979,7 +1984,7 @@ class PlayState extends MusicBeatState
 					finishCallback();
 				}
 				else startAndEnd();
-			}
+			});
 
 			add(video);
 		}
@@ -2327,31 +2332,34 @@ class PlayState extends MusicBeatState
 			picoCutscene.anim.play('dieBitch', true);
 			picoCutscene.anim.onComplete = function():Void
 			{
-				picoCutscene.anim.play('picoAppears', true);
-				picoCutscene.anim.onComplete = function():Void
+				switch (picoCutscene.anim.curInstance.symbol.name)
 				{
-					picoCutscene.anim.play('picoEnd', true);
-					picoCutscene.anim.onComplete = function():Void
+					case 'dieBitch' | 'GF Time to Die sequence':
+					{
+						picoCutscene.anim.play('picoAppears', true);
+
+						boyfriendGroup.alpha = 1;
+						boyfriendCutscene.visible = false;
+						boyfriend.playAnim('bfCatch', true);
+		
+						boyfriend.animation.finishCallback = function(name:String):Void
+						{
+							if (name != 'idle')
+							{
+								boyfriend.playAnim('idle', true);
+								boyfriend.animation.curAnim.finish(); // Instantly goes to last frame
+							}
+						}
+					}
+					case 'picoAppears' | 'Pico Saves them sequence': picoCutscene.anim.play('picoEnd', true);
+					case 'picoEnd', 'Pico Dual Wield on Speaker idle':
 					{
 						gfGroup.alpha = 1;
 						picoCutscene.visible = false;
 						picoCutscene.anim.onComplete = null;
 					}
-				};
-
-				boyfriendGroup.alpha = 1;
-				boyfriendCutscene.visible = false;
-				boyfriend.playAnim('bfCatch', true);
-
-				boyfriend.animation.finishCallback = function(name:String):Void
-				{
-					if (name != 'idle')
-					{
-						boyfriend.playAnim('idle', true);
-						boyfriend.animation.curAnim.finish(); //Instantly goes to last frame
-					}
-				};
-			};
+				}
+			}
 		});
 
 		var zoomBack:Void->Void = function():Void
@@ -7030,7 +7038,7 @@ class PlayState extends MusicBeatState
 				{
 					var unlock:Bool = false;
 
-					if ((!usedPractice || addScoreOnPractice) && (isStoryMode && award.week_nomiss == WeekData.getWeekFileName()) || (award.song == SONG.songID))
+					if ((!usedPractice || addScoreOnPractice) && ((isStoryMode && award.week_nomiss == WeekData.getWeekFileName()) || (award.song == SONG.songID)))
 					{
 						var diff:String = CoolUtil.difficultyStuff[storyDifficulty][0];
 

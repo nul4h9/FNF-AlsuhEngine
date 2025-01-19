@@ -1,7 +1,6 @@
-0.2.3h;
-- Fixed typing C, X and V keys on editors
-- Fixed text on starting dialogue
-- Updated flixel to 5.8.0 version
-- Dialogue characters can now load multiple sprite sheets
-- Hashlink no more supported (use other builds instead)
-- Fixed `PlayState.instance.set_cpuControlled`
+0.2.4;
+- Achievements Rework
+- Achievements Menu Rework
+- Fixed Achievement Scripts
+- Fixed Achievement "Just a Friendly Sparring"
+- Alsuh Engine now has its own ID for the Discord RPC

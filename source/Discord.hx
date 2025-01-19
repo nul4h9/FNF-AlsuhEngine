@@ -20,7 +20,7 @@ class DiscordClient
 {
 	#if DISCORD_ALLOWED
 	public static var isInitialized:Bool = false;
-	private static var _defaultID(default, never):String = '814588678700924999';
+	private static var _defaultID(default, never):String = '1139795963767181402';
 
 	public static var clientID(default, set):String = _defaultID;
 

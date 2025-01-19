@@ -1,5 +1,5 @@
 {
-	"week_nomiss": "weekend1_nomiss",
+	"week_nomiss": "weekend1",
 	"index": -1,
 	"lua_code": "",
 	"save_tag": "weekend1_nomiss",
@@ -12,7 +12,8 @@
 		174
 	],
 	"song": "",
-	"maxScore": 50,
+	"maxScore": -1,
+	"maxDecimals": 0,
 	"hidden": false,
 	"misses": 0
 }

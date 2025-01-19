@@ -1,8 +1,8 @@
 package flixel.addons.ui;
 
-import flixel.addons.ui.interfaces.IFlxUIWidget;
 import flixel.addons.ui.interfaces.IHasParams;
 import flixel.addons.ui.interfaces.IResizable;
+import flixel.addons.ui.interfaces.IFlxUIWidget;
 
 /**
  * @author Lars Doucet
@@ -31,6 +31,7 @@ class FlxUIInputText extends FlxInputText implements IResizable implements IFlxU
 	private override function onChange(action:String):Void
 	{
 		super.onChange(action);
+
 		if (broadcastToFlxUI)
 		{
 			switch (action)
@@ -43,14 +44,14 @@ class FlxUIInputText extends FlxInputText implements IResizable implements IFlxU
 				case FlxInputText.INPUT_ACTION: // text was input
 					FlxUI.event(INPUT_EVENT, this, text, params);
 					FlxUI.event(CHANGE_EVENT, this, text, params);
-             			case FlxInputText.COPY_ACTION: // text was copied
-                    			FlxUI.event(COPY_EVENT, this, text, params);
-                		case FlxInputText.PASTE_ACTION: // text was pasted
-                    			FlxUI.event(PASTE_EVENT, this, text, params);
-                    			FlxUI.event(CHANGE_EVENT, this, text, params);
-                		case FlxInputText.CUT_ACTION: // text was cut
-                    			FlxUI.event(CUT_EVENT, this, text, params);
-                    			FlxUI.event(CHANGE_EVENT, this, text, params);
+	 			case FlxInputText.COPY_ACTION: // text was copied
+					FlxUI.event(COPY_EVENT, this, text, params);
+				case FlxInputText.PASTE_ACTION: // text was pasted
+					FlxUI.event(PASTE_EVENT, this, text, params);
+					FlxUI.event(CHANGE_EVENT, this, text, params);
+				case FlxInputText.CUT_ACTION: // text was cut
+					FlxUI.event(CUT_EVENT, this, text, params);
+					FlxUI.event(CHANGE_EVENT, this, text, params);
 			}
 		}
 	}

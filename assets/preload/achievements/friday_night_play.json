@@ -12,7 +12,8 @@
 		0
 	],
 	"song": "",
-	"maxScore": 0,
+	"maxScore": -1,
+	"maxDecimals": 0,
 	"hidden": true,
 	"misses": -1
 }

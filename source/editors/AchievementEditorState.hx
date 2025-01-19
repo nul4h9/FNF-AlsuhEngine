@@ -14,6 +14,7 @@ import sys.FileSystem;
 #end
 
 import flixel.FlxG;
+import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import openfl.events.Event;
 import flixel.ui.FlxButton;
@@ -34,12 +35,11 @@ class AchievementEditorState extends MusicBeatState
 	#if ACHIEVEMENTS_ALLOWED
 	var award:Achievement = null;
 
-	var icon:AttachedAchievement = null;
-	var text:Alphabet = null;
+	var icon:AchievementSprite = null;
 	var bg:Sprite = null;
 
-	private var descBox:Sprite = null;
-	private var descText:FlxText = null;
+	var nameText:FlxText;
+	var descText:FlxText;
 
 	override function create():Void
 	{
@@ -61,22 +61,36 @@ class AchievementEditorState extends MusicBeatState
 		bg.scrollFactor.set();
 		add(bg);
 
-		text = new Alphabet(280, 270, award.name, false);
-		add(text);
+		icon = new AchievementSprite(0, 0, 'debugger');
+		icon.screenCenter();
 
-		icon = new AttachedAchievement(text.x - 105, text.y, award.save_tag);
-		icon.sprTracker = text;
+		var box:Sprite = new Sprite(0, -30);
+		box.makeGraphic(1, 1, FlxColor.BLACK);
+		box.scale.set(icon.width + 60, icon.height + 60);
+		box.updateHitbox();
+		box.alpha = 0.6;
+		box.scrollFactor.set();
+		box.screenCenter();
+		add(box);
+
 		add(icon);
 
-		descBox = new Sprite();
-		descBox.makeGraphic(1, 1, FlxColor.BLACK);
-		descBox.alpha = 0.6;
-		add(descBox);
+		var box:Sprite = new Sprite(0, 570);
+		box.makeGraphic(1, 1, FlxColor.BLACK);
+		box.scale.set(FlxG.width, FlxG.height - box.y);
+		box.updateHitbox();
+		box.alpha = 0.6;
+		box.scrollFactor.set();
+		add(box);
 
-		descText = new FlxText(50, 600, 1180, "", 32);
-		descText.setFormat(Paths.getFont('vcr.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		nameText = new FlxText(50, box.y + 10, FlxG.width - 100, "", 32);
+		nameText.setFormat(Paths.getFont("vcr.ttf"), 32, FlxColor.WHITE, CENTER);
+		nameText.scrollFactor.set();
+		add(nameText);
+
+		descText = new FlxText(50, nameText.y + 38, FlxG.width - 100, "", 24);
+		descText.setFormat(Paths.getFont("vcr.ttf"), 24, FlxColor.WHITE, CENTER);
 		descText.scrollFactor.set();
-		descText.borderSize = 2.4;
 		add(descText);
 
 		addEditorBox();
@@ -124,6 +138,7 @@ class AchievementEditorState extends MusicBeatState
 	var songInputText:FlxUIInputText = null;
 	var missesStepper:FlxUINumericStepper = null;
 	var maxScoreStepper:FlxUINumericStepper = null;
+	var maxDecimalsStepper:FlxUINumericStepper;
 
 	var loadButton:FlxButton = null;
 	var saveButton:FlxButton = null;
@@ -152,7 +167,7 @@ class AchievementEditorState extends MusicBeatState
 		indexStepper = new FlxUINumericStepper(weekInputText.x + weekInputText.width + 72, awardNameInputText.y, 1, award.index, -1);
 		blockPressWhileTypingOnStepper.push(indexStepper);
 
-		bgColorStepperR = new FlxUINumericStepper(10, weekInputText.y + 40, 20, 255, 0, 255, 0);
+		bgColorStepperR = new FlxUINumericStepper(10, weekInputText.y + 50, 20, 255, 0, 255, 0);
 		blockPressWhileTypingOnStepper.push(bgColorStepperR);
 		
 		bgColorStepperG = new FlxUINumericStepper(bgColorStepperR.x + 86, bgColorStepperR.y, 20, 255, 0, 255, 0);
@@ -177,21 +192,25 @@ class AchievementEditorState extends MusicBeatState
 			reloadAllShit();
 		});
 
-		diffInputText = new FlxUIInputText(songInputText.x, weekInputText.y, 75, award.diff, 8);
+		diffInputText = new FlxUIInputText(songInputText.x, weekInputText.y + 14, 75, award.diff, 8);
 
-		missesStepper = new FlxUINumericStepper(tagInputText.x + tagInputText.width + 96, tagInputText.y + 15, 1, award.misses, -1);
+		missesStepper = new FlxUINumericStepper(tagInputText.x + tagInputText.width + 96, tagInputText.y + 4, 1, award.misses, -1);
 		blockPressWhileTypingOnStepper.push(missesStepper);
 
 		hxFileInputText = new FlxUIInputText(luaFileInputText.x + luaFileInputText.width + 10, luaFileInputText.y, 70, award.hx_code, 8);
 		blockPressWhileTypingOn.push(hxFileInputText);
 
-		maxScoreStepper = new FlxUINumericStepper(missesStepper.x, descInputText.y + 40, 0.01, award.maxScore, 0, 999, 2);
+		maxScoreStepper = new FlxUINumericStepper(missesStepper.x, missesStepper.y + 44, 0.001, award.maxScore, 0, 999, 2);
 		blockPressWhileTypingOnStepper.push(maxScoreStepper);
+
+		maxDecimalsStepper = new FlxUINumericStepper(missesStepper.x, maxScoreStepper.y + 44, 1, award.maxDecimals, 0, 3, 2);
+		blockPressWhileTypingOnStepper.push(maxDecimalsStepper);
 
 		tab_group.add(awardNameInputText);
 		tab_group.add(tagInputText);
 		tab_group.add(descInputText);
 		tab_group.add(maxScoreStepper);
+		tab_group.add(maxDecimalsStepper);
 		tab_group.add(luaFileInputText);
 		tab_group.add(hxFileInputText);
 		tab_group.add(weekInputText);
@@ -212,7 +231,7 @@ class AchievementEditorState extends MusicBeatState
 		tab_group.add(new FlxText(tagInputText.x, tagInputText.y - 18, 0, 'Achievement save tag:'));
 		tab_group.add(new FlxText(descInputText.x, descInputText.y - 18, 0, 'Achievement description:'));
 		tab_group.add(new FlxText(luaFileInputText.x, luaFileInputText.y - 18, 0, 'Lua file:'));
-		tab_group.add(new FlxText(hxFileInputText.x, hxFileInputText.y - 18, 0, 'HX file:'));
+		tab_group.add(new FlxText(hxFileInputText.x, hxFileInputText.y - 18, 0, 'HScript file:'));
 		tab_group.add(new FlxText(weekInputText.x, weekInputText.y - 18, 0, 'Week ID to unlock:'));
 		tab_group.add(new FlxText(indexStepper.x, indexStepper.y - 18, 0, 'Index:'));
 		tab_group.add(new FlxText(10, bgColorStepperR.y - 18, 0, 'Selected background Color R/G/B:'));
@@ -220,6 +239,7 @@ class AchievementEditorState extends MusicBeatState
 		tab_group.add(new FlxText(diffInputText.x - 25, diffInputText.y - 18, 0, 'Difficulty ID to unlock:'));
 		tab_group.add(new FlxText(missesStepper.x - 10, missesStepper.y - 26, 0, 'Minimal Misses\n(-1 to disable):'));
 		tab_group.add(new FlxText(maxScoreStepper.x - 10, maxScoreStepper.y - 26, 0, 'Max Score\n(0 to disable):'));
+		tab_group.add(new FlxText(maxDecimalsStepper.x - 10, maxDecimalsStepper.y - 26, 0, 'Max Decimals\n(0 to disable):'));
 
 		UI_box.addGroup(tab_group);
 	}
@@ -235,7 +255,8 @@ class AchievementEditorState extends MusicBeatState
 		weekInputText.text = award.week_nomiss;
 		indexStepper.value = award.index;
 		missesStepper.value = award.misses;
-		maxScoreStepper.value = award.maxScore;
+		maxScoreStepper.value = (award.maxScore != null) ? award.maxScore : 0;
+		maxDecimalsStepper.value = (award.maxDecimals != null) ? award.maxDecimals : 0;
 		bgColorStepperR.value = award.color[0];
 		bgColorStepperG.value = award.color[1];
 		bgColorStepperB.value = award.color[2];
@@ -243,7 +264,7 @@ class AchievementEditorState extends MusicBeatState
 		songInputText.text = award.song;
 
 		award.name = awardNameInputText.text.trim();
-		text.text = award.name; // lol
+		nameText.text = award.name;
 
 		if (tagInputText.text == null) {
 			tagInputText.text = '';
@@ -254,18 +275,8 @@ class AchievementEditorState extends MusicBeatState
 
 		award.desc = descInputText.text.trim();
 
+		descText.alpha = (award.desc != null && award.desc.trim().length > 0) ? 1 : FlxMath.EPSILON;
 		descText.text = award.desc;
-		descText.screenCenter(Y);
-		descText.y += 270;
-
-		descBox.setPosition(descText.x - 10, descText.y - 10);
-		descBox.setGraphicSize(Std.int(descText.width + 20), Std.int(descText.height + 25));
-		descBox.updateHitbox();
-
-		var visible:Bool = award.desc != null && award.desc.length > 0;
-
-		descText.visible = visible;
-		descBox.visible = visible;
 
 		updateBG();
 	}
@@ -282,7 +293,7 @@ class AchievementEditorState extends MusicBeatState
 			if (sender == awardNameInputText)
 			{
 				award.name = awardNameInputText.text.trim();
-				text.text = award.name; // lol
+				nameText.text = award.name; // lol
 
 				#if DISCORD_ALLOWED
 				DiscordClient.changePresence("Achievement Editor", "Editting: " + award.name); // Updating Discord Rich Presence
@@ -301,18 +312,8 @@ class AchievementEditorState extends MusicBeatState
 			{
 				award.desc = descInputText.text.trim();
 
+				descText.alpha = (award.desc != null && award.desc.trim().length > 0) ? 1 : FlxMath.EPSILON;
 				descText.text = award.desc;
-				descText.screenCenter(Y);
-				descText.y += 270;
-		
-				descBox.setPosition(descText.x - 10, descText.y - 10);
-				descBox.setGraphicSize(Std.int(descText.width + 20), Std.int(descText.height + 25));
-				descBox.updateHitbox();
-
-				var visible:Bool = award.desc != null && award.desc.length > 0;
-
-				descText.visible = visible;
-				descBox.visible = visible;
 			}
 			else if (sender == luaFileInputText) {
 				award.lua_code = luaFileInputText.text.trim();
@@ -346,8 +347,11 @@ class AchievementEditorState extends MusicBeatState
 			else if (sender == missesStepper) {
 				award.misses = Math.round(missesStepper.value);
 			}
-			else if (sender == missesStepper) {
+			else if (sender == maxScoreStepper) {
 				award.maxScore = maxScoreStepper.value;
+			}
+			else if (sender == maxDecimalsStepper) {
+				award.maxDecimals = Math.round(maxDecimalsStepper.value);
 			}
 		}
 	}

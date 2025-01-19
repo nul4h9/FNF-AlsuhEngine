@@ -10,11 +10,9 @@ jobs:
       - name: Setup Haxe
         uses: krdlab/setup-haxe@master
         with:
-          haxe-version: 4.3.6
+          haxe-version: 4.3.4
       - name: Install Haxe Libraries
         run: |
-          sudo apt-get install libvlc-dev
-          sudo apt-get install libvlccore-dev
           haxelib setup ~/haxelib
           haxelib install hmm --quiet
           haxelib run hmm install --quiet

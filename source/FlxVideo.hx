@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.FlxBasic;
 
 #if VIDEOS_ALLOWED
-#if desktop
+#if (cpp && !html5)
 import hxcodec.flixel.FlxVideo as VideoHandler;
 #else
 import openfl.media.Video;
@@ -19,17 +19,19 @@ using StringTools;
 #if VIDEOS_ALLOWED
 class FlxVideo extends FlxBasic
 {
-	#if web
+	#if html5
 	var netStream:NetStream;
 	#end
 
-	public var finishCallback:Void->Void;
+	public var finishCallback:FlxVideo->Void;
 
 	/**
 	 * Doesn't actually interact with Flixel shit, only just a pleasant to use class    
 	 */
-	public function new(vidSrc:String):Void
+	public function new(vidSrc:String, ?finishCallback:FlxVideo->Void):Void
 	{
+		this.finishCallback = finishCallback;
+
 		super();
 
 		var newPath:String = Paths.getVideo(vidSrc);
@@ -38,7 +40,7 @@ class FlxVideo extends FlxBasic
 			newPath = newPath.substring(newPath.indexOf(':') + 1, newPath.length);
 		}
 
-		#if desktop
+		#if cpp
 		var video:VideoHandler = new VideoHandler();
 		video.play(newPath);
 		video.onEndReached.add(function():Void
@@ -46,7 +48,7 @@ class FlxVideo extends FlxBasic
 			video.dispose();
 			finishVideo();
 		});
-		#elseif web
+		#elseif html5
 		var video:Video = new Video();
 		video.x = 0;
 		video.y = 0;
@@ -82,14 +84,14 @@ class FlxVideo extends FlxBasic
 
 	override function update(elapsed:Float):Void
 	{
-		#if web
+		#if html5
 		updateVolume();
 		#end
 
 		super.update(elapsed);
 	}
 
-	#if web
+	#if html5
 	function updateVolume():Void
 	{
 		@:privateAccess
@@ -102,7 +104,7 @@ class FlxVideo extends FlxBasic
 	public function finishVideo():Void
 	{
 		if (finishCallback != null) {
-			finishCallback();
+			finishCallback(this);
 		}
 
 		kill();

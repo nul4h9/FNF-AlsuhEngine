@@ -391,7 +391,7 @@ class WeekData
 
 	public static function setDirectoryFromWeek(?data:WeekData = null):Void
 	{
-		Paths.currentModDirectory = '';
+		Paths.loadTopMod();
 
 		if (data != null && data.folder != null && data.folder.length > 0) {
 			Paths.currentModDirectory = data.folder;

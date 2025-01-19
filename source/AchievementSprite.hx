@@ -1,10 +1,7 @@
 package;
 
-import flixel.FlxSprite;
-
-class AttachedAchievement extends Sprite
+class AchievementSprite extends Sprite
 {
-	public var sprTracker:FlxSprite;
 	private var tag:String;
 
 	public function new(x:Float = 0, y:Float = 0, name:String):Void
@@ -61,17 +58,5 @@ class AttachedAchievement extends Sprite
 		}
 
 		antialiasing = ClientPrefs.globalAntialiasing && antialias;
-
-		scale.set(0.7, 0.7);
-		updateHitbox();
-	}
-
-	override function update(elapsed:Float):Void
-	{
-		if (sprTracker != null) {
-			setPosition(sprTracker.x - 130, sprTracker.y + 25);
-		}
-
-		super.update(elapsed);
 	}
 }
